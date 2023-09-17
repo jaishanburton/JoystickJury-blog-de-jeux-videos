@@ -15,16 +15,26 @@ module.exports = {
       res.write(`Bienvenue sur mon application. Voici comment /hello fonctionne :`);
       res.write(`<ul>`);
       res.write(`<li><a href="/hello?name=jaishan">/hello?name=jaishan repond avec une introduction sur moi.</a></li>`);
+      res.write(`<li><a href="/hello?name=mathys">/hello?name=mathys repond avec une introduction sur moi.</a></li>`);
+      res.write(`<li><a href="/hello?name=marc-antoine">/hello?name=marc-antoine repond avec une introduction sur moi.</a></li>`);
+
       res.write(`</ul>`);
     } else if (pathName === '/hello' && 'name' in params) {
       const name = params['name'];
       if (name.toLowerCase() === 'jaishan') {
-        res.write(`Bonjour, je suis Jaishan, le createur de cette application !`);
-      } else {
+        res.write(`Bonjour, je suis Jaishan, un des createurs de cette application !`);
+      } 
+      else if (name.toLowerCase() === 'mathys') {
+        res.write(`Bonjour, je suis Mathys, un des createurs de cette application !`);
+      }
+      else if (name.toLowerCase() === 'marc-antoine') {
+        res.write(`Bonjour, je suis Marc-Antoine, un des createurs de cette application !`);
+      }
+      else {
         res.write(`Bonjour ${name}`);
       }
     } else if (pathName === '/hello') {
-      const randomNames = ["John", "Jack", "Joe"];
+      const randomNames = ["John", "Jack", "Joe", "Jane", "Jill", "James", "Jenny", "Jade", "Jasmine", "Jasper"];
       const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
       res.write(`Bonjour ${randomName}`);
     } else if (pathName === '/about') {
