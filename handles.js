@@ -5,7 +5,6 @@ const url = require('url');
 const qs = require('querystring');
 const db = require('./db'); // Importez la base de données depuis le fichier db.js
 
-
 // Route principale
 router.get('/', (req, res) => {
   res.send('Hello World');
@@ -48,6 +47,38 @@ router.get('/articles/:articleId', (req, res) => {
 
   res.json(article);
 });
+
+// Route pour obtenir tous les commentaires d'un article spécifique
+router.get('/articles/:articleId/comments', (req, res) => {
+  const articleId = req.params.articleId;
+  const articleComments = db.comments.filter((comment) => comment.articleId === articleId);
+  res.json(articleComments);
+});
+
+// Route pour ajouter un nouveau commentaire à un article spécifique
+
+router.post('/articles/:articleId/comments', (req, res) => {
+  const articleId = req.params.articleId;
+  const newComment = req.body; // Supposons que le corps de la requête contient les détails du nouveau commentaire
+  newComment.articleId = articleId; // Associez le commentaire à l'article en utilisant articleId
+  db.comments.push(newComment);
+  res.status(201).json(newComment); // Répond avec le nouveau commentaire ajouté
+});
+
+// Route pour obtenir un commentaire spécifique d'un article
+router.get('/articles/:articleId/comments/:commentId', (req, res) => {
+  const articleId = req.params.articleId;
+  const commentId = req.params.commentId;
+  const comment = db.comments.find((c) => c.articleId === articleId && c.id === commentId);
+
+  if (!comment) {
+    return res.status(404).json({ error: 'Comment not found' });
+  }
+
+  res.json(comment);
+});
+
+
 
 
 module.exports = router;
