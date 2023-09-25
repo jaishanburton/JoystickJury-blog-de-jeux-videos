@@ -1,29 +1,25 @@
 // handles.js
-// Necessary imports
+const express = require('express');
+const router = express.Router();
+const url = require('url');
+const qs = require('querystring');
 
-const url = require('url')
-const qs = require('querystring')
+// Route principale
+router.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
-module.exports = {
-  serverHandle: function (req, res) {
-    const route = url.parse(req.url)
-    const path = route.pathname
-    const params = qs.parse(route.query)
+// Route '/hello' avec des paramètres
+router.get('/hello', (req, res) => {
+  const route = url.parse(req.url);
+  const path = route.pathname;
+  const params = qs.parse(route.query);
 
-    // Retrieve and print the current path
-    console.log(path)
-    
-    // Retrieve and print the queryParams
-    console.log(params)
-
-    res.writeHead(200, { 'Content-Type': 'text/html' })
-    if (path === '/hello' && 'name' in params) {
-      res.write('Hello ' + params['name'])
-    } else {
-      res.write('Hello anonymous')
-    }
-    
-
-    res.end()
+  if ('name' in params) {
+    res.send(`Hello ${params['name']}`);
+  } else {
+    res.send('Hello anonymous');
   }
-}
+});
+
+module.exports = router;
