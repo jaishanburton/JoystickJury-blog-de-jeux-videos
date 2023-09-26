@@ -23,6 +23,7 @@ router.get('/hello', (req, res) => {
   }
 });
 
+//PARTIE 2.2
 // Route pour obtenir tous les articles
 router.get('/articles', (req, res) => {
   res.json(db.articles);
@@ -48,6 +49,9 @@ router.get('/articles/:articleId', (req, res) => {
   res.json(article);
 });
 
+
+
+//PARTIE 2.3
 // Route pour obtenir tous les commentaires d'un article spécifique
 router.get('/articles/:articleId/comments', (req, res) => {
   const articleId = req.params.articleId;
