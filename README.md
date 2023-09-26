@@ -1,4 +1,4 @@
-# ece-webtech-gr05-501
+# ece-webtech-501
 
 ## Introduction 
 LAB2 effectué par Jaishan BURTON ELMO, Mathys BAGNAH et Marc-Antoine GRABEY.
