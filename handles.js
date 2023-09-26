@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-// Route '/hello' avec des paramètres
+// Route '/hello' avec des paramètres (Refactorisation du code du LAB2 pour utiliser avec express)
 router.get('/hello', (req, res) => {
   const route = url.parse(req.url);
   const path = route.pathname;
