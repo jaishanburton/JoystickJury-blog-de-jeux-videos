@@ -1,4 +1,3 @@
-// db.js
 const db = {
     articles: [
       {
