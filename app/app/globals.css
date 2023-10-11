@@ -1,0 +1,9 @@
+/* Active les styles de base, composants et utilitaires Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Classe personnalisée wt-title */
+.wt-title {
+  @apply text-3xl font-bold underline mb-10;
+}
