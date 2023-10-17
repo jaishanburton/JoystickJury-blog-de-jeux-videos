@@ -5,14 +5,18 @@ import Footer from '../components/footer';
 import '../app/globals.css';
 
 const Home = () => {
-  return (
+return (
     <>
       <Header />
       <Navbar />
-      <div className="wt-title">Bienvenue sur mon blog !</div>
+      <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+        <div className="text-center">
+          <div className="wt-title text-5xl font-bold text-gray-700 mb-10">Bienvenue sur mon blog !</div>
+        </div>
+      </div>
       <Footer />
     </>
-  );
+);
 };
 
 export default Home;
