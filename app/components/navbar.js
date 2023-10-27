@@ -7,6 +7,7 @@ function Nav() {
             <Link href="/about">         À Propos</Link>
             <Link href="/contacts">        Contacts</Link>
             <Link href="/articles">        Articles</Link>
+            <Link href="/use-state">        Compteur</Link>
         </nav>
     );
 }
