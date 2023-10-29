@@ -1,5 +1,7 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from './UserContext';
+import LoggedIn from './LoggedIn';
+import LoggedOut from './LoggedOut';
 
 function Header() {
     const { user } = useContext(UserContext);
@@ -7,11 +9,7 @@ function Header() {
     return (
         <header>
             <h1>Mon Blog</h1>
-            {user && (
-                <div>
-                    <span role="img" aria-label="icône de compte">👤</span> {user.username}
-                </div>
-            )}
+            {user ? <LoggedIn /> : <LoggedOut />}
         </header>
     );
 }
