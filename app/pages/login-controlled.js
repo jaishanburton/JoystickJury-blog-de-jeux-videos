@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Header from '../components/header';
 import Navbar from '../components/navbar';
-
+import { useUser } from '../components/UserContext'; 
 
 function LoginControlledPage() {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
+
+    const { login } = useUser(); 
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,8 +23,9 @@ function LoginControlledPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-    };
 
+        login(formData);
+    };
     return (
         <div className="p-8"><Header/><Navbar />
             <h1 className="mb-4 text-2xl font-bold">Connexion (Contrôlée)</h1>
