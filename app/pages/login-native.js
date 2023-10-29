@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '../components/header';
+import Navbar from '../components/navbar';
 
 function LoginPageNative() {
     const handleFormSubmit = (e) => {
@@ -13,7 +15,7 @@ function LoginPageNative() {
     };
 
     return (
-        <div className="p-8">
+        <div className="p-8"><Header/><Navbar />
             <h1 className="mb-4 text-2xl font-bold">Connexion</h1>
             <form onSubmit={handleFormSubmit}>
                 <div className="mb-4">

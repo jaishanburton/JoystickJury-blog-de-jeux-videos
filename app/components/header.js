@@ -1,23 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { UserContext } from './UserContext';
 
 function Header() {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        fetch('/api/profile')
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Non autorisé');
-            })
-            .then(data => {
-                setUser(data);
-            })
-            .catch(error => {
-                console.error("Erreur lors de la récupération du profil:", error);
-            });
-    }, []);
+    const { user } = useContext(UserContext);
 
     return (
         <header>
