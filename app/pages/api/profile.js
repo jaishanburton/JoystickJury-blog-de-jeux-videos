@@ -1,5 +1,3 @@
-// pages/api/profile.js
-
 export default (req, res) => {
     // Simulez une vérification d'authentification
     const userIsLoggedIn = true;

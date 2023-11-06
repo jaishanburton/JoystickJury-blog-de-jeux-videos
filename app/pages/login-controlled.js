@@ -54,7 +54,7 @@ function LoginControlledPage() {
                         required 
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">Soumettre</button>
+                <button type="submit" className="bg-blue-500 text-white p-2 rounded">Connexion</button>
             </form>
         </div>
     );
