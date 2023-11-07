@@ -6,3 +6,58 @@
 .wt-title {
   @apply text-3xl font-bold underline mb-10;
 }
+
+nav.principal{
+  place-content: center;
+  display: grid;
+}
+
+.shadow-button-set {
+  margin: 0;
+  display: inline;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5vmin;
+  
+  & > li {
+    display: inline-flex;
+    background: black;
+    margin-right: 10px;
+    
+    &:is(:hover, :focus-within) > button:not(:active) {
+      --distance: -10px;
+    }
+  }
+  
+  & button {
+    appearance: none;
+    outline: none;
+    font-size: 3vmin;
+    border: 2px solid black;
+    background: white;
+    
+    --distance: 0;
+    transform: translateX(var(--distance)) translateY(var(--distance));
+    
+    @media (prefers-reduced-motion: no-preference) {
+      will-change: transform;
+      transition: transform .2s ease ;
+    }
+  }
+}
+
+/** {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: system-ui, sans-serif;
+  display: grid;
+  place-content: center;
+}*/

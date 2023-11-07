@@ -2,14 +2,48 @@ import Link from 'next/link';
 
 function Nav() {
     return (
-        <nav>
-            <Link href="/">        Accueil</Link>
-            <Link href="/about">         À Propos</Link>
-            <Link href="/contacts">        Contacts</Link>
-            <Link href="/articles">        Articles</Link>
-            <Link href="/use-state">        Compteur</Link>
-            <Link href="/login-native">        Login Native</Link>
-            <Link href="/login-controlled">        Login Controlled</Link>
+        <nav class="pricipal">
+            <ul class="shadow-button-set">
+                <li >
+                    <button>
+                        <Link href="/">Accueil</Link>
+                    </button>
+                </li>
+
+                <li >
+                    <button>
+                    <Link href="/about">À Propos</Link>
+                    </button>
+                </li>
+            
+                <li >
+                    <button>
+                    <Link href="/contacts">Contacts</Link>
+                    </button>
+                </li>
+            
+                <li >
+                    <button>
+                    <Link href="/articles">Articles</Link>
+                    </button>
+                </li>
+            
+                <li >
+                    <button>
+                    <Link href="/use-state">Compteur</Link>
+                    </button>
+                </li>
+            
+                <li >
+                    <button>
+                    <Link href="/login-native">Login Native</Link>                    </button>
+                </li>
+            
+                <li >
+                    <button>
+                    <Link href="/login-controlled">Login Controlled</Link>                 </button>
+                </li>
+           </ul>
         </nav>
     );
 }
