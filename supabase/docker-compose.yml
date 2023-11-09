@@ -53,7 +53,7 @@ services:
     # https://unix.stackexchange.com/a/294837
     entrypoint: bash -c 'eval "echo \"$$(cat ~/temp.yml)\"" > ~/kong.yml && /docker-entrypoint.sh kong docker-start'
     ports:
-      - ${KONG_HTTP_PORT}:8000/tcp
+      - ${KONG_HTTP_PORT}:8002/tcp
       - ${KONG_HTTPS_PORT}:8443/tcp
     depends_on:
       analytics:
