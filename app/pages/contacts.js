@@ -8,6 +8,8 @@ function Contacts() {
     const [contactsList, setContactsList] = useState([]);
     const [form, setForm] = useState({ firstname: '', lastname: '', email: '', message: '' });
     const supabaseClient = useSupabaseClient();
+    const [submitStatus, setSubmitStatus] = useState({ success: false, error: false, message: '' });
+
 
     useEffect(() => {
         async function loadContacts() {
@@ -26,6 +28,8 @@ function Contacts() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setSubmitStatus({ success: false, error: false, message: '' }); // Réinitialiser le statut
+
         const { data, error } = await supabaseClient
             .from('contacts')
             .insert([
@@ -33,9 +37,13 @@ function Contacts() {
             ]);
         if (error) {
             console.error('Erreur lors de l’ajout du contact:', error);
+            setSubmitStatus({ success: false, error: true, message: 'Une erreur est survenue lors de l’ajout du contact.' });
         } else {
-            setContactsList([...contactsList, ...data]);
+            // Assurez-vous que data est un tableau avant de l'utiliser dans setContactsList
+            const newData = Array.isArray(data) ? data : [data];
+            setContactsList([...contactsList, ...newData]);
             setForm({ firstname: '', lastname: '', email: '', message: '' });
+            setSubmitStatus({ success: true, error: false, message: 'Contact ajouté avec succès!' });
         }
     };
 
@@ -75,20 +83,11 @@ function Contacts() {
                     </div>
                     <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Envoyer</button>
                 </form>
-
-                <h3 className="text-xl font-bold mb-2">Messages reçus :</h3>
-                {contactsList.length > 0 ? (
-                    contactsList.map((contact, index) => (
-                        <div key={index} className="mb-4 p-4 border rounded">
-                            <p><strong>Prénom :</strong> {contact.firstname} </p>
-                            <p><strong>Nom :</strong>{contact.lastname}</p>
-            <p><strong>Email :</strong> {contact.email}</p>
-            <p><strong>Message :</strong> {contact.message}</p>
-        </div>
-    ))
-) : (
-    <p>Aucun contact pour l'instant.</p>
-)}
+                {submitStatus.message && (
+            <div className={`alert ${submitStatus.success ? 'success' : 'error'}`}>
+                {submitStatus.message}
+            </div>
+        )}
             </main>
 
             <Footer />
