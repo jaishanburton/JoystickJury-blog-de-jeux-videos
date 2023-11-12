@@ -8,12 +8,13 @@
 }
 
 nav.principal{
-  place-content: center;
-  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
 }
 
 .shadow-button-set {
-  margin: 0;
+  margin-left: 10px;
   display: inline;
   flex-direction: column;
   align-items: flex-start;
@@ -44,6 +45,19 @@ nav.principal{
       transition: transform .2s ease ;
     }
   }
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Utilisez une police lisible et moderne */
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2c3e50; /* Couleur de fond du menu */
+  color: #ecf0f1; /* Couleur du texte du menu */
+  padding: 1rem; /* Espace autour du contenu du menu */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ombre avec décalage */
 }
 
 /** {
