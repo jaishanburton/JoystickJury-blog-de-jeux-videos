@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { UserContext } from './UserContext';
+import React from 'react';
+import { useUser } from '@supabase/auth-helpers-react';
 import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
 
 function Header() {
-    const { user } = useContext(UserContext);
+    const user = useUser(); // Ne déstructurez pas ici car useUser peut retourner null
 
     return (
         <header>
