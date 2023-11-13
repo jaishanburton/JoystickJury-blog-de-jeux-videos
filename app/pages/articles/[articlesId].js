@@ -1,6 +1,8 @@
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Nav from '../../components/navbar';
+import '../app/globals.css';
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
 
 function ArticlePage({ data }) {
     return (
