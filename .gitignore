@@ -1,9 +1,19 @@
 # Ignorer les fichiers et dossiers génériques
 .*
-/node_modules
+
+# Ignorer le dossier node_modules
+node_modules/
+
+# Ne pas ignorer le fichier .gitignore lui-même
 !.gitignore
+
+# Ignorer les dossiers spécifiques de Supabase
 supabase/volumes/db/data
 supabase/volumes/storage
+
+# Ignorer les fichiers d'environnement
 .env
+
+# Ignorer les fichiers de test et de configuration spécifiques
 supabase/test.http
 supabase/docker-compose.override.yml
