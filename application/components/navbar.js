@@ -36,13 +36,13 @@ function Nav() {
             
                 <li >
                     <button>
-                    <Link href="/login-native">Login Native</Link>                    </button>
+                    <Link href="/login">Login (Supabase)</Link>                    </button>
                 </li>
             
-                <li >
+                {/* <li >
                     <button>
-                    <Link href="/login-controlled">Login Controlled</Link>                 </button>
-                </li>
+                    <Link href="/login-native">Login native </Link>                 </button>
+                </li> */}
            </ul>
         </nav>
     );
