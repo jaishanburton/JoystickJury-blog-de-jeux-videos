@@ -1,11 +1,17 @@
 import { createClient } from '@supabase/supabase-js'
 import React from 'react'
 
-// Initialisez Supabase client
-const supabaseAdmin = createClient('http://localhost:8001', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q'
-)
+// Assurez-vous que les informations de connexion à Supabase sont stockées de manière sécurisée
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY; // Utilisez une variable d'environnement pour la clé de service
+const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 const ContactDetails = ({ contact }) => {
+    // Gestion d'un contact inexistant ou d'une erreur de chargement
+    if (!contact) {
+        return <p>Contact non trouvé ou erreur de chargement.</p>;
+    }
+
     return (
         <div>
             <h1>Détails du contact</h1>
@@ -18,20 +24,20 @@ const ContactDetails = ({ contact }) => {
 }
 
 export const getServerSideProps = async (context) => {
-    const { id } = context.params
+    const { id } = context.params;
 
     let { data: contact, error } = await supabaseAdmin
         .from('contacts')
         .select('*')
         .eq('id', id)
-        .single()
+        .single();
 
     if (error) {
-        console.error('Erreur lors de la récupération du contact', error)
-        return { props: { contact: null } }
+        console.error('Erreur lors de la récupération du contact', error);
+        return { props: { contact: null } };
     }
 
-    return { props: { contact } }
+    return { props: { contact } };
 }
 
-export default ContactDetails
+export default ContactDetails;

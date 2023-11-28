@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared'; // Assurez-vous d'importer ThemeSupa
-import { supabase } from '../supabaseClient'; // Assurez-vous que le chemin est correct
+import { createClient } from '@supabase/supabase-js';
+import { ThemeSupa } from '@supabase/auth-ui-shared'; // Assurez-vous que ce module est disponible
+
+// Assurez-vous de configurer correctement vos variables d'environnement pour Supabase
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const LoginPage = () => {
   const router = useRouter();
@@ -14,7 +19,7 @@ const LoginPage = () => {
       }
     });
 
-    // Si la méthode unsubscribe n'existe pas, ne faites rien lors du nettoyage
+    // S'assurer de se désabonner correctement lors du nettoyage
     return () => {
       if (authListener && typeof authListener.unsubscribe === 'function') {
         authListener.unsubscribe();
