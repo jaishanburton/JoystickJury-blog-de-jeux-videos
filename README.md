@@ -9,6 +9,18 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   
   L'application est basée sur Next.js. Vous pouvez trouver la configuration principale dans `next.config.js`. Le dossier contient également des composants, des pages, des configurations pour Tailwind CSS, et d'autres ressources nécessaires.
 
+### Prérequis
+
+- **Node.js**
+  Vous devez avoir `Node.js: ^16.0.0` d'installer.
+  
+- **Docker**
+  Vous devez avoir `Docker: ^24.0.6` d'installer.
+
+- **Supabase**
+  Vous devez avoir accès a supabase.
+
+
 ### Comment utiliser le projet
 
 - **Installation**
