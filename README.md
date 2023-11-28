@@ -1,35 +1,76 @@
 # ece-webtech-501
 
 ## Introduction
-Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a été principalement contribué par Jaishan BURTON ELMO, Mathys BAGNAH, et Marc-Antoine GRABEY. Le projet contient deux parties principales : une application Next.js dans le dossier `app` et un serveur Express dans le dossier `lab`.
+Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a été principalement contribué par Jaishan BURTON ELMO, Mathys BAGNAH, et Marc-Antoine GRABEY. Le projet contient deux parties principales : une application Next.js dans le dossier `application` et un serveur Express dans le dossier `lab`.
 
-## Structure du projet
+### Structure du projet
 
-### App
-L'application est basée sur Next.js. Vous pouvez trouver la configuration principale dans `next.config.js`. Le dossier contient également des composants, des pages, des configurations pour Tailwind CSS, et d'autres ressources nécessaires.
+- **Application**
+  
+  L'application est basée sur Next.js. Vous pouvez trouver la configuration principale dans `next.config.js`. Le dossier contient également des composants, des pages, des configurations pour Tailwind CSS, et d'autres ressources nécessaires.
 
-### Lab
-Le serveur Express est contenu dans ce dossier. Il utilise un middleware pour parser les requêtes JSON et un routeur provenant du fichier `handles.js`. Le serveur est configuré pour écouter sur le port 8080.
+### Prérequis
 
-## Comment utiliser le projet
+- **Node.js**
+  
+  Vous devez avoir `Node.js: ^16.0.0` d'installer.
+  
+- **Docker**
+  
+  Vous devez avoir `Docker: ^24.0.6` d'installer.
 
-### Installation
-- Assurez-vous d'avoir Node.js et npm installés sur votre machine.
-- Clonez le dépôt ou téléchargez le code source.
-- Dans le répertoire principal du projet, exécutez la commande `npm install` pour installer toutes les dépendances nécessaires.
+- **Supabase**
+  
+  Vous devez avoir accès a supabase.
 
-## Exécution
 
-Pour lancer l'application Next.js :
+### Comment utiliser le projet
 
-- Ouvrez un terminal et naviguez jusqu'au dossier `app`.
-- Exécutez la commande `npm install` pour installer toutes les dépendances nécessaires, si ce n'est pas déjà fait.
-- Lancez l'application en exécutant `npm run dev`.
-- L'application sera accessible via `http://localhost:3000` dans votre navigateur web.
+- **Installation**
+  - Assurez-vous d'avoir Node.js et npm installés sur votre machine.
+  - Clonez le dépôt ou téléchargez le code source.
+  - Dans le répertoire principal du projet, exécutez la commande suivante pour installer toutes les dépendances nécessaires.
+    ```
+    npm install
+    ```
 
-Pour démarrer le serveur Express :
+- **Exécution**
 
-- Ouvrez un terminal et placez-vous dans le répertoire principal du projet.
-- Exécutez `node lab/index.js` pour lancer le serveur.
-- Le serveur Express sera disponible et à l'écoute sur le port 8080. Vous pourrez y accéder via un navigateur ou un outil comme Postman à l'adresse `http://localhost:8080`.
+    Pour lancer l'application Next.js :
+    
+    - Ouvrez un terminal et naviguez jusqu'au dossier `app`.
+    - Exécutez la commande suivante pour installer toutes les dépendances nécessaires, si ce n'est pas déjà fait.
+    ```
+    npm install
+    ```
+    - Lancez l'application avec la commande :
+    ```
+    npm run dev
+    ```
+    - L'application sera accessible via `http://localhost:3000` dans votre navigateur web.
+ 
+## Liverables
+-  Lien Vercel : [Cliquer ici]()
+-  Lien projet Supabase : [Cliquer ici]()
 
+## Authors
+- Jaishan BURNO ELMO, SI Gr 05
+- Mathis BAGNAH, SI Gr 05
+- Marc-Antoine GRABEY, SI Gr 05
+
+## Evalutaion
+
+### Tâches obligatoires
+
+- Tâche
+  - Note :
+  - Commentaire :
+  - Retour :
+ 
+## Divers
+
+### Retour du cours
+
+
+### Réutilisation du projet
+ Nous autorisons notre professeur l'utilisation de ce projet comme exemple pour les étudiants des prochaine années
