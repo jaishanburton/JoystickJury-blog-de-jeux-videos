@@ -12,12 +12,15 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 ### Prérequis
 
 - **Node.js**
+  
   Vous devez avoir `Node.js: ^16.0.0` d'installer.
   
 - **Docker**
+  
   Vous devez avoir `Docker: ^24.0.6` d'installer.
 
 - **Supabase**
+  
   Vous devez avoir accès a supabase.
 
 
