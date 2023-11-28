@@ -61,7 +61,7 @@ function Contacts() {
                 <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
                 <div className="mb-6">
                     <p className="mb-2"><strong>Email:</strong> exemple@monblog.com</p>
-                    <p><strong>Téléphone:</strong> +33 6 23 45 67 89</p>
+                    <p><strong>Téléphone:</strong> +33 7 23 45 67 89</p>
                 </div>
 
                 <form onSubmit={handleSubmit}>
