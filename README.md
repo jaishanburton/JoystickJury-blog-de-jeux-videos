@@ -16,15 +16,24 @@ Le serveur Express est contenu dans ce dossier. Il utilise un middleware pour pa
 ### Installation
 - Assurez-vous d'avoir Node.js et npm installés sur votre machine.
 - Clonez le dépôt ou téléchargez le code source.
-- Dans le répertoire principal du projet, exécutez la commande `npm install` pour installer toutes les dépendances nécessaires.
+- Dans le répertoire principal du projet, exécutez la commande suivante pour installer toutes les dépendances nécessaires.
+```
+npm install
+```
 
 ## Exécution
 
 Pour lancer l'application Next.js :
 
 - Ouvrez un terminal et naviguez jusqu'au dossier `app`.
-- Exécutez la commande `npm install` pour installer toutes les dépendances nécessaires, si ce n'est pas déjà fait.
-- Lancez l'application en exécutant `npm run dev`.
+- Exécutez la commande suivante pour installer toutes les dépendances nécessaires, si ce n'est pas déjà fait.
+```
+npm install
+```
+- Lancez l'application avec la commande :
+```
+npm run dev
+```
 - L'application sera accessible via `http://localhost:3000` dans votre navigateur web.
 
 Pour démarrer le serveur Express :
