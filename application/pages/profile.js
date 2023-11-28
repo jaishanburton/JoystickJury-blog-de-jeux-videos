@@ -1,5 +1,3 @@
-// Fichier: pages/profile.js
-
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../supabaseClient'; // Assurez-vous que le chemin est correct

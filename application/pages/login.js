@@ -1,5 +1,3 @@
-// Fichier: pages/login.js
-
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from '@supabase/auth-ui-react';
