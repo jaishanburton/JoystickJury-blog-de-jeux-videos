@@ -13,11 +13,11 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 - **Node.js**
   
-  Vous devez avoir `Node.js: ^16.0.0` d'installer.
+  Vous devez avoir `Node.js: ^16.0.0` d'installé.
   
 - **Docker**
   
-  Vous devez avoir `Docker: ^24.0.6` d'installer.
+  Vous devez avoir `Docker: ^24.0.6` d'installé.
 
 - **Supabase**
   
@@ -49,16 +49,16 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
     ```
     - L'application sera accessible via `http://localhost:3000` dans votre navigateur web.
  
-## Liverables
--  Lien Vercel : [Cliquer ici]()
+## Liens vers notre Projet
+-  Lien Vercel : https://ece-webtech-501.vercel.app/
 -  Lien projet Supabase : [Cliquer ici]()
 
-## Authors
-- Jaishan BURNO ELMO, SI Gr 05
-- Mathis BAGNAH, SI Gr 05
+## Auteurs
+- Jaishan BURTON ELMO, SI Gr 05
+- Mathys BAGNAH, SI Gr 05
 - Marc-Antoine GRABEY, SI Gr 05
 
-## Evalutaion
+## Evaluation
 
 ### Tâches obligatoires
 
