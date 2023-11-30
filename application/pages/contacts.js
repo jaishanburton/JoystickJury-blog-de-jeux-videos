@@ -10,7 +10,6 @@ function Contacts() {
     const supabaseClient = useSupabaseClient();
     const [submitStatus, setSubmitStatus] = useState({ success: false, error: false, message: '' });
 
-
     useEffect(() => {
         async function loadContacts() {
             const { data, error } = await supabaseClient
@@ -28,8 +27,7 @@ function Contacts() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setSubmitStatus({ success: false, error: false, message: '' }); // Réinitialiser le statut
-
+        setSubmitStatus({ success: false, error: false, message: '' }); 
         const { data, error } = await supabaseClient
             .from('contacts')
             .insert([
@@ -39,7 +37,6 @@ function Contacts() {
             console.error('Erreur lors de l’ajout du contact:', error);
             setSubmitStatus({ success: false, error: true, message: 'Une erreur est survenue lors de l’ajout du contact.' });
         } else {
-            // Assurez-vous que data est un tableau avant de l'utiliser dans setContactsList
             const newData = Array.isArray(data) ? data : [data];
             setContactsList([...contactsList, ...newData]);
             setForm({ firstname: '', lastname: '', email: '', message: '' });
@@ -52,42 +49,57 @@ function Contacts() {
         setForm({ ...form, [name]: value });
     };
 
+
     return (
         <div className="container mx-auto px-4">
             <Header />
             <Nav />
 
             <main className="mt-10">
-                <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
-                <div className="mb-6">
-                    <p className="mb-2"><strong>Email:</strong> exemple@monblog.com</p>
-                    <p><strong>Téléphone:</strong> +33 7 23 45 67 89</p>
-                </div>
+                <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Contactez-nous</h2>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-6 shadow-md rounded-lg">
                     <div className="mb-4">
-                        <label className="block text-sm font-medium">Prénom :</label>
-                        <input type="text" name="firstname" value={form.firstname} onChange={handleChange} className="w-full p-2 border rounded" required />
+                        <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">Prénom :</label>
+                        <input id="firstname" type="text" name="firstname" value={form.firstname} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium">Nom :</label>
-                        <input type="text" name="lastname" value={form.lastname} onChange={handleChange} className="w-full p-2 border rounded" required />
+                        <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">Nom :</label>
+                        <input id="lastname" type="text" name="lastname" value={form.lastname} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium">Email :</label>
-                        <input type="email" name="email" value={form.email} onChange={handleChange} className="w-full p-2 border rounded" required />
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email :</label>
+                        <input id="email" type="email" name="email" value={form.email} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium">Message :</label>
-                        <textarea name="message" value={form.message} onChange={handleChange} className="w-full p-2 border rounded" required></textarea>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message :</label>
+                        <textarea id="message" name="message" value={form.message} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
                     </div>
-                    <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Envoyer</button>
-                </form>
-                {submitStatus.message && (
-            <div className={`alert ${submitStatus.success ? 'success' : 'error'}`}>
-                {submitStatus.message}
+                    <div className="mb-4">
+                        <label htmlFor="recontact" className="block text-sm font-medium text-gray-700">Voulez-vous être recontacté ?</label>
+                        </div>
+                    <div className="mb-4">
+              <label className="inline-flex items-center">
+                <input type="radio" className="form-radio h-5 w-5 text-green-600" name="gender" value="Yes" />
+                <span className="ml-2 text-gray-700">Yes</span>
+              </label>
+              <label className="inline-flex items-center ml-6">
+                <input type="radio" className="form-radio h-5 w-5 text-red-600" name="gender" value="No" />
+                <span className="ml-2 text-gray-700">No</span>
+              </label>
             </div>
-        )}
+                    <div className="mb-4">
+                        <button type="submit" className="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                            Envoyer
+                        </button>
+                    </div>
+                </form>
+
+                {submitStatus.message && (
+                    <div className={`mt-6 text-center p-4 rounded-md ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                        {submitStatus.message}
+                    </div>
+                )}
             </main>
 
             <Footer />
