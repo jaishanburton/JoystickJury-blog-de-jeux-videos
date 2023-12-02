@@ -38,11 +38,6 @@ function Nav() {
                     <button>
                     <Link href="/login">Login (Supabase)</Link>                    </button>
                 </li>
-            
-                {/* <li >
-                    <button>
-                    <Link href="/login-native">Login native </Link>                 </button>
-                </li> */}
            </ul>
         </nav>
     );
