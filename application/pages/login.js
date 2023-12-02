@@ -34,7 +34,7 @@ const LoginPage = () => {
   return (
     <>
       <Header />
-      <Navbar />
+      <div className="container mx-auto px-4"><Navbar /></div>
       <div className="container mx-auto px-4">
         <Auth
           supabaseClient={supabase}

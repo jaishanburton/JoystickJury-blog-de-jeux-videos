@@ -6,7 +6,7 @@ function About() {
     return (
         <div>
             <Header />
-            <Nav />
+            <div className="container mx-auto px-4"><Nav /></div>
             <main>
                 <h2>À propos de ce blog</h2>
                 <p>

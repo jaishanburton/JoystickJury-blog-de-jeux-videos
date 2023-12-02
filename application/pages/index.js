@@ -8,7 +8,8 @@ const Home = () => {
 return (
     <>
       <Header />
-      <Navbar />
+      <div className="container mx-auto px-4"><Navbar /></div>
+      
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
         <div className="text-center">
           <div className="wt-title text-5xl font-bold text-gray-700 mb-10">Bienvenue sur mon blog !</div>
