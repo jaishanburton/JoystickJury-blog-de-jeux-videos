@@ -6,7 +6,6 @@ function LoggedOut() {
 
     const onClickLogin = async () => {
         try {
-            // Remplacez ceci par votre logique d'authentification, par exemple une redirection vers une page de connexion
             const { user, session, error } = await supabaseClient.auth.signIn({
                 // Exemple avec un provider Google
                 provider: 'google',

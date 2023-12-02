@@ -8,14 +8,14 @@ function Footer() {
         <footer className="bg-gray-100 text-gray-600 body-font">
         <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            {/* Replace with your actual logo or text */}
+            {/* Logo*/}
             <span className="ml-3 text-xl">VoiceReview</span>
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            {/* Add your links here */}
+            {/* Liens*/}
             <a className="mr-5 hover:text-gray-900">Home</a>
             <a className="mr-5 hover:text-gray-900">About</a>
-            {/* ... other links */}
+            
           </nav>
           <div className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             <a href="#" className="text-gray-500 hover:text-gray-900">

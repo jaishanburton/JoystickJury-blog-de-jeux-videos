@@ -5,7 +5,7 @@ import Nav from '../components/navbar';
 const dummyArticles = [
     { id: 1, title: "Mon premier article" },
     { id: 2, title: "Découverte de Next.js" },
-    // Ajoutez d'autres articles factices si nécessaire
+    // Ajouter d'autres articles factices si nécessaire
 ];
 
 function Articles({ articles }) {

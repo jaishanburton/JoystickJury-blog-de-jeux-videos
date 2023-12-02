@@ -36,7 +36,8 @@ function Nav() {
             
                 <li >
                     <button>
-                    <Link href="/login">Login (Supabase)</Link>                    </button>
+                    <Link href="/login">Login (Supabase)</Link>                    
+                    </button>
                 </li>
            </ul>
         </nav>

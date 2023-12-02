@@ -4,7 +4,7 @@ import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
 
 function Header() {
-    const user = useUser(); // Ne déstructurez pas ici car useUser peut retourner null
+    const user = useUser(); // Faut pas déstructurer ici car useUser peut retourner null
 
     return (
         <header>
