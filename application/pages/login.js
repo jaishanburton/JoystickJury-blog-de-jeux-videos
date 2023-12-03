@@ -4,7 +4,6 @@ import { Auth } from '@supabase/auth-ui-react';
 import { createClient } from '@supabase/supabase-js';
 import { ThemeSupa } from '@supabase/auth-ui-shared'; // Assurez-vous que ce module est disponible
 import Header from '../components/header';
-import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import '../app/globals.css';
 

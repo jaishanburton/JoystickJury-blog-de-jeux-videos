@@ -1,6 +1,5 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Nav from '../components/navbar';
 
 const dummyArticles = [
     { id: 1, title: "Mon premier article" },
