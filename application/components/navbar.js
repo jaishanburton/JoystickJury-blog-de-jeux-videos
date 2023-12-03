@@ -21,7 +21,11 @@ function Nav() {
                     <Link href="/contacts">Contacts</Link>
                     </button>
                 </li>
-            
+                <li >
+                    <button>
+                    <Link href="/post">Posts</Link>
+                    </button>
+                </li>
                 <li >
                     <button>
                     <Link href="/articles">Articles</Link>
