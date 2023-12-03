@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Nav from '../components/navbar';
 import Image from 'next/image'; // Importation du composant Image de Next.js pour une meilleure optimisation
 
 function Post() {
