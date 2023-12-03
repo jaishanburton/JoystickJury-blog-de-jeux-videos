@@ -22,11 +22,12 @@ function Header() {
         <header className="bg-white p-4 flex justify-between items-center w-full">
             <span className="text-4xl font-bold">JoystickJury</span>
             <nav className="flex gap-16">
+                <NavigationLink href="/">Accueil</NavigationLink>
                 <NavigationLink href="/about">A propos</NavigationLink>
                 <NavigationLink href="/contacts">Contacts</NavigationLink>
-                <NavigationLink href="/post">Poster</NavigationLink>
                 <NavigationLink href="/articles">Articles</NavigationLink>
                 <NavigationLink href="/use-state">Compteur</NavigationLink>
+                <NavigationLink href="/post">Publier</NavigationLink>
                 {user ? <LoggedIn /> : <NavigationLink href="/login">Connexion</NavigationLink>}
             </nav>
         </header>
