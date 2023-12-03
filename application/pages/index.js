@@ -8,7 +8,6 @@ const Home = () => {
 return (
     <>
       <Header />
-      <div className="container mx-auto px-4"><Navbar /></div>
       
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
         <div className="text-center">

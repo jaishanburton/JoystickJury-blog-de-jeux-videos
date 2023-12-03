@@ -3,15 +3,34 @@ import { useUser } from '@supabase/auth-helpers-react';
 import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
 
-function Header() {
-    const user = useUser(); // Faut pas déstructurer ici car useUser peut retourner null
+import Link from 'next/link';
 
+const NavigationLink = ({ children, href = "#" }) => {
     return (
-        <header>
-            <h1>Mon Blog</h1>
-            {user ? <LoggedIn /> : <LoggedOut />}
+      <Link href={href}>
+<span className="nav-link hover:text-blue-600 decoration-2 underline-offset-8 transition-all duration-500 ease-in-out cursor-pointer">
+  {children}
+</span>
+      </Link>
+    );
+  };
+  
+function Header() {
+    const user = useUser();
+  
+    return (
+        <header className="bg-white p-4 flex justify-between items-center w-full">
+            <span className="text-4xl font-bold">JoystickJury</span>
+            <nav className="flex gap-16">
+                <NavigationLink href="/about">A propos</NavigationLink>
+                <NavigationLink href="/contacts">Contacts</NavigationLink>
+                <NavigationLink href="/post">Poster</NavigationLink>
+                <NavigationLink href="/articles">Articles</NavigationLink>
+                <NavigationLink href="/use-state">Compteur</NavigationLink>
+                {user ? <LoggedIn /> : <NavigationLink href="/login">Connexion</NavigationLink>}
+            </nav>
         </header>
     );
-}
-
+  }
+  
 export default Header;

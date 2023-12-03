@@ -9,7 +9,6 @@ function UseStatePage() {
     return (
         <div>
             <Header />
-            <div className="container mx-auto px-4"><Nav /></div>
             <div className="p-8">
                 <h1 className="mb-4 text-2xl font-bold">Compteur: {count}</h1>
                 <button 

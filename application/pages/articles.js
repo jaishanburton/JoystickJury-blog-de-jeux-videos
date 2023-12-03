@@ -11,7 +11,6 @@ const dummyArticles = [
 function Articles({ articles }) {
     return (
         <><Header />
-        <div className="container mx-auto px-4"><Nav /></div>
         
         <div className="container mx-auto px-4">
             {/* En-tête */}

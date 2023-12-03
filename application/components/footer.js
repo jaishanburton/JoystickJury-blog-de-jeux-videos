@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaGithub } from 'react-icons/fa';
 
 
 function Footer() {
