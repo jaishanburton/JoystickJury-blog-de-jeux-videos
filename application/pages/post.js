@@ -74,13 +74,18 @@ function Post() {
             setSubmitStatus({ success: false, error: true, message: 'Le contenu du post ne peut pas être vide.' });
             return;
         }
-
+    
+        // Modification ici pour inclure les bons attributs
         const { error } = await supabaseClient
-            .from('posts')
+            .from('posts') // Assurez-vous que 'posts' est le nom de votre table
             .insert([
-                { category: selectedCategory, game: selectedGame, content: postContent }
+                { 
+                    categorie: selectedCategory, // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
+                    nom_du_jeu: selectedGame,    // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
+                    contenu_du_jeu: postContent  // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
+                }
             ]);
-
+    
         if (error) {
             setSubmitStatus({ success: false, error: true, message: 'Une erreur est survenue lors de la publication du post.' });
         } else {
@@ -89,7 +94,7 @@ function Post() {
             setGameImage('');
         }
     };
-
+    
     return (
         <div className="container mx-auto px-4">
             <Header />    
