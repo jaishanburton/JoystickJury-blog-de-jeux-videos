@@ -10,6 +10,12 @@
 }
 
 
+.game-card img {
+  object-fit: contain;
+  height: 350px; 
+  width: 100%;
+}
+
 
 
 .wt-title {
