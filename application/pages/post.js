@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Ajout de useEffect ici
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Image from 'next/image'; // Importation du composant Image de Next.js pour une meilleure optimisation
+import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/router';
+
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 
 function Post() {
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -13,6 +21,24 @@ function Post() {
     const [submitStatus, setSubmitStatus] = useState({ success: false, error: false, message: '' });
 
     const supabaseClient = useSupabaseClient();
+    const [userEmail, setUserEmail] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState(null);
+    const router = useRouter();
+  
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+              setUsername(session.user.user_metadata.full_name);
+              setUserEmail(session.user.email);
+              setLoading(false);
+            } else {
+              router.push('/login');
+            }
+          });
+          }, [supabaseClient]);
+                
 
     const categories = {
         'Jeux de sport': ['FC24', 'NBA2K24', 'UFC 5', 'Just Dance 2024', 'FIFA 23'],
@@ -70,6 +96,7 @@ function Post() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(userEmail);
         if (!postContent.trim()) {
             setSubmitStatus({ success: false, error: true, message: 'Le contenu du post ne peut pas être vide.' });
             return;
@@ -82,7 +109,8 @@ function Post() {
                 { 
                     categorie: selectedCategory, // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
                     nom_du_jeu: selectedGame,    // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
-                    contenu_du_jeu: postContent  // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
+                    contenu_du_jeu: postContent,  // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
+                    email: userEmail // Utilisez l'email stocké dans l'état
                 }
             ]);
     
