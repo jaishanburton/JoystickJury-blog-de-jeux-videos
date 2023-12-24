@@ -110,7 +110,8 @@ function Post() {
                     categorie: selectedCategory, // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
                     nom_du_jeu: selectedGame,    // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
                     contenu_du_jeu: postContent,  // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
-                    email: userEmail // Utilisez l'email stocké dans l'état
+                    email: userEmail, // Utilisez l'email stocké dans l'état
+                    nom_image: gameImage
                 }
             ]);
     
