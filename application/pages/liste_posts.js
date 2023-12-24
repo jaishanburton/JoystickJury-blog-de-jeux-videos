@@ -6,6 +6,7 @@ import Slider from 'react-slick'; // Assurez-vous que Slider est importé
 import 'slick-carousel/slick/slick.css'; // Feuilles de style pour Slider
 import 'slick-carousel/slick/slick-theme.css';
 import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/router'; // Ajoutez l'import de useRouter
 
 // Initialisation du client Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -23,8 +24,11 @@ const postSettings = {
   autoplaySpeed: 4000,
 };
 
+
 function PostsPage() {
   const [posts, setPosts] = useState([]);
+  const router = useRouter(); // Utilisez useRouter pour la navigation
+
 
   // Récupération des posts de la base de données
   useEffect(() => {
@@ -40,6 +44,11 @@ function PostsPage() {
     fetchPosts();
   }, []);
 
+  const handlePostClick = (postId) => {
+    router.push(`/posts/${postId}`); // Assurez-vous d'avoir une route dynamique configurée pour les posts
+  };
+
+
   return (
     <>
       <Header />
@@ -49,8 +58,10 @@ function PostsPage() {
         <Slider {...postSettings}>
           {posts.map((post, index) => (
             <div key={index} className="p-2">
-              <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
-                <Image
+            <div
+              className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col"
+              onClick={() => handlePostClick(post.id)}>
+              <Image
                   src={post.nom_image} // Assurez-vous que le chemin est correct
                   alt={`Image du jeu ${post.nom_du_jeu}`}
                   width={300}
