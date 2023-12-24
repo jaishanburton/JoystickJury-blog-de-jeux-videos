@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Slider from 'react-slick';
@@ -6,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../app/globals.css';
 
-// Données fictives pour les jeux, remplacer par vos propres jeux
+// Données pour les jeux
 const games = [
   { src: '/images/nba2k24-pc.jpg', title: 'NBA 2K24', description: 'Le basketball à son apogée.' },
   { src: '/images/fc24-pc.jpg', title: 'FIFA 24', description: 'Découvrez le frisson du football mondial.' },
@@ -34,6 +35,14 @@ const settings = {
 };
 
 const Home = () => {
+  const router = useRouter();
+
+  const handleGameClick = (game) => {
+    router.push({
+      pathname: '/post',
+      query: { game: JSON.stringify(game) }, 
+    });
+  };
   return (
     <>
       <Header />
@@ -48,14 +57,17 @@ const Home = () => {
         <section className="container mx-auto py-20">
           <h2 className="text-4xl text-center font-bold mb-12">Les incontournables</h2>
           <Slider {...settings}>
-          {games.map((game, index) => (
+            {games.map((game, index) => (
               <div key={index} className="p-2 game-card">
-                <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
+                <div
+                  className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer"
+                  onClick={() => handleGameClick(game)}
+                >
                   <img src={game.src} alt={game.title} className="w-full object-contain" style={{ height: '250px' }} />
                   <div className="p-6 flex flex-col justify-between flex-grow">
                     <h3 className="font-bold text-xl mb-2">{game.title}</h3>
                     <p className="text-gray-700 text-base">{game.description}</p>
-                 </div>
+                  </div>
                 </div>
               </div>
             ))}
