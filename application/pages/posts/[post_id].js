@@ -19,33 +19,35 @@ const PostDetails = ({ post, initialComments }) => {
   // Gestion de la soumission du commentaire
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    console.log("Tentative de soumission du commentaire"); // Log pour débogage
+    console.log("Tentative de soumission du commentaire");
 
-    const session = supabase.auth.getUser();
+    // Obtenez les détails de l'utilisateur connecté
+    const user = supabase.auth.getUser();
     
-    if (!session) {
+    if (!user) {
+        console.log("Aucun utilisateur connecté.");
         alert('Vous devez être connecté pour poster un commentaire.');
         return;
     }
 
-    console.log("Envoi du commentaire à Supabase"); // Log pour débogage
+    console.log("Session utilisateur détectée, e-mail :", user.email);
 
     const { data: newComment, error } = await supabase
         .from('comments')
         .insert([
             { 
-                post_id: post.id, // Assurez-vous que post.id est l'ID correct du post
-                user_id: session.id, // ID de l'utilisateur connecté
+                post_id: post_id, // Assurez-vous que post_id est l'ID correct du post
+                user_id: user.id, // Utilisez l'ID de l'utilisateur connecté
                 comment_text: commentText // Texte du commentaire
             }
         ])
-        .single(); // Utilisation de .single() pour obtenir directement l'objet inséré
+        .single();
 
     if (error) {
+        console.error("Erreur lors de la soumission du commentaire :", error.message);
         alert('Erreur lors de la publication du commentaire.');
-        console.error('Error submitting comment', error);
     } else {
-        console.log("Commentaire publié avec succès", newComment); // Log pour débogage
+        console.log("Commentaire publié avec succès :", newComment);
         setComments([...comments, newComment]);
         setCommentText(''); // Réinitialiser le champ de texte après la soumission
     }
@@ -81,17 +83,30 @@ const PostDetails = ({ post, initialComments }) => {
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Poster</button>
           </form>
           <div className="space-y-4">
-            {comments.map((comment, index) => {
-                // Vérifier si le commentaire n'est pas null
-                if (!comment) {
-                return null; // ou affichez une autre chose indiquant un commentaire manquant ou invalide
-                }
+  {comments.map((comment, index) => {
+    if (!comment) {
+      // Gérez le cas où le commentaire est null ou undefined
+      return <div key={index}>Commentaire non disponible.</div>;
+    }
 
-                return (
-                <div key={index} className="border p-2 rounded-md">
-                    <p>{comment.comment_text}</p>
-                    {/* Affichez ici d'autres détails comme l'auteur et la date */}
-            </div>
+    // Convertissez la chaîne de date en objet Date JavaScript
+    const commentDate = new Date(comment.created_at);
+
+    // Formatez la date comme vous le souhaitez, par exemple '1 Jan 2020 14:00'
+    const displayDate = commentDate.toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    return (
+      <div key={index} className="border p-2 rounded-md">
+        <p>{comment.comment_text}</p>
+        <p className="text-gray-600">Commenté le: {displayDate}</p>
+        {/* Vous pouvez ajouter plus de détails ici */}
+      </div>
     );
   })}
 </div>
