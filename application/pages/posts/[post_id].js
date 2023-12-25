@@ -4,6 +4,8 @@ import { createClient } from '@supabase/supabase-js';
 import Image from 'next/image';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+
 
 // Initialisez Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -13,45 +15,71 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const PostDetails = ({ post, initialComments }) => {
   const [comments, setComments] = useState(initialComments);
   const [commentText, setCommentText] = useState('');
+
+  const supabaseClient = useSupabaseClient();
+  const [userEmail, setUserEmail] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
   const router = useRouter();
   const { post_id } = router.query;
+
+
+  useEffect(() => {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session) {
+            setUsername(session.user.user_metadata.full_name);
+            setUserEmail(session.user.email);
+            setLoading(false);
+          } 
+        });
+        }, [supabaseClient]);
+
+
   
-  // Gestion de la soumission du commentaire
-  const handleCommentSubmit = async (e) => {
+const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    console.log("Tentative de soumission du commentaire");
-
-    // Obtenez les détails de l'utilisateur connecté
-    const user = supabase.auth.getUser();
     
-    if (!user) {
-        console.log("Aucun utilisateur connecté.");
-        alert('Vous devez être connecté pour poster un commentaire.');
-        return;
-    }
-
-    console.log("Session utilisateur détectée, e-mail :", user.email);
-
+    // ... code pour obtenir la session et les détails de l'utilisateur
+    
     const { data: newComment, error } = await supabase
         .from('comments')
         .insert([
-            { 
-                post_id: post_id, // Assurez-vous que post_id est l'ID correct du post
-                user_id: user.id, // Utilisez l'ID de l'utilisateur connecté
-                comment_text: commentText // Texte du commentaire
-            }
+        {
+            post_id: post_id, // Assurez-vous que post_id est l'ID correct du post
+            comment_text: commentText, // Texte du commentaire
+        }
         ])
         .single();
-
+    
     if (error) {
         console.error("Erreur lors de la soumission du commentaire :", error.message);
         alert('Erreur lors de la publication du commentaire.');
     } else {
-        console.log("Commentaire publié avec succès :", newComment);
-        setComments([...comments, newComment]);
-        setCommentText(''); // Réinitialiser le champ de texte après la soumission
-    }
+        console.log("Commentaire publié avec succès :", commentText);
+        fetchComments();
+    setCommentText(''); // Réinitialiser le champ de texte après la soumission
+  }
 };
+
+const fetchComments = async () => {
+  const { data: comments, error } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('post_id', post_id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error("Erreur lors de la récupération des commentaires :", error.message);
+  } else {
+    setComments(comments);
+  }
+};
+
+useEffect(() => {
+  fetchComments();
+}, []);
+
+          
 
   return (
     <>
@@ -86,7 +114,7 @@ const PostDetails = ({ post, initialComments }) => {
   {comments.map((comment, index) => {
     if (!comment) {
       // Gérez le cas où le commentaire est null ou undefined
-      return <div key={index}>Commentaire non disponible.</div>;
+      return <div key={index}>Chargement du commentaire...</div>;
     }
 
     // Convertissez la chaîne de date en objet Date JavaScript
