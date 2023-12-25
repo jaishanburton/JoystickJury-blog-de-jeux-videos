@@ -47,6 +47,7 @@ const handleCommentSubmit = async (e) => {
         {
             post_id: post_id, // Assurez-vous que post_id est l'ID correct du post
             comment_text: commentText, // Texte du commentaire
+            email : userEmail // Email de l'utilisateur
         }
         ])
         .single();
@@ -62,19 +63,19 @@ const handleCommentSubmit = async (e) => {
 };
 
 const fetchComments = async () => {
-  const { data: comments, error } = await supabase
-    .from('comments')
-    .select('*')
-    .eq('post_id', post_id)
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error("Erreur lors de la récupération des commentaires :", error.message);
-  } else {
-    setComments(comments);
-  }
-};
-
+    const { data: comments, error } = await supabase
+      .from('comments')
+      .select('id, comment_text, email, created_at') // Inclure la colonne email
+      .eq('post_id', post_id)
+      .order('created_at', { ascending: false });
+  
+    if (error) {
+      console.error("Erreur lors de la récupération des commentaires :", error.message);
+    } else {
+      setComments(comments);
+    }
+  };
+  
 useEffect(() => {
   fetchComments();
 }, []);
@@ -130,12 +131,14 @@ useEffect(() => {
     });
 
     return (
-      <div key={index} className="border p-2 rounded-md">
-        <p>{comment.comment_text}</p>
-        <p className="text-gray-600">Commenté le: {displayDate}</p>
-        {/* Vous pouvez ajouter plus de détails ici */}
-      </div>
-    );
+        <div key={index} className="border p-2 rounded-md">
+          <p>{comment.comment_text}</p>
+          <p className="text-gray-600">Écrit par: {comment.email}</p> {/* Ajouter cette ligne */}
+          <p className="text-gray-600">Commenté le: {displayDate}</p>
+          {/* ... autres détails ... */}
+        </div>
+      );
+      
   })}
 </div>
         </div>
