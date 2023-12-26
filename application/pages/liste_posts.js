@@ -30,14 +30,18 @@ function PostsPage() {
     fetchPosts();
   }, []);
 
-  // Paramètres pour le carrousel adaptés pour afficher 3 posts à la fois
+  const filteredPosts = posts.filter(post =>
+    post.nom_du_jeu.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Paramètres pour le carrousel adaptés pour afficher correctement les posts
   const postSettings = {
     dots: true,
-    infinite: posts.length > 3,
+    infinite: filteredPosts.length > 3,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    autoplay: posts.length > 3,
+    slidesToShow: Math.min(3, filteredPosts.length), // Affichez 3 ou moins selon le nombre de posts
+    slidesToScroll: Math.min(3, filteredPosts.length),
+    autoplay: filteredPosts.length > 3,
     autoplaySpeed: 4000,
   };
 
@@ -65,7 +69,6 @@ function PostsPage() {
     </div>
   );
   
-
   return (
     <>
       <Header />
@@ -83,9 +86,7 @@ function PostsPage() {
         </div>
 
         <Slider {...postSettings}>
-          {posts.filter(post =>
-            post.nom_du_jeu.toLowerCase().includes(searchTerm.toLowerCase())
-          ).map(renderPost)}
+          {filteredPosts.map(renderPost)}
         </Slider>
       </div>
       <Footer />
