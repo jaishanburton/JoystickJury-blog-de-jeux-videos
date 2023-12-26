@@ -23,12 +23,10 @@ function Header() {
             <span className="text-4xl font-bold">JoystickJury</span>
             <nav className="flex gap-16">
                 <NavigationLink href="/">Accueil</NavigationLink>
+                <NavigationLink href="/about">A propos</NavigationLink>
                 <NavigationLink href="/liste_posts">Liste des posts</NavigationLink>
                 <NavigationLink href="/my_posts">Mes posts</NavigationLink>
-                <NavigationLink href="/about">A propos</NavigationLink>
                 <NavigationLink href="/contacts">Contacts</NavigationLink>
-                <NavigationLink href="/articles">Articles</NavigationLink>
-                <NavigationLink href="/use-state">Compteur</NavigationLink>
                 <NavigationLink href="/post">Publier</NavigationLink>
                 {user ? <LoggedIn /> : <NavigationLink href="/login">Connexion</NavigationLink>}
             </nav>

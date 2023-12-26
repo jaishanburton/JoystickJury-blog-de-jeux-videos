@@ -15,16 +15,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 
-// Paramètres pour le carrousel
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 2,
-  autoplay: true,
-  autoplaySpeed: 4000,
-};
+
 
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState([]);
@@ -35,7 +26,16 @@ const MyPosts = () => {
   const [username, setUsername] = useState(null);
   const router = useRouter();
 
-
+// Paramètres pour le carrousel
+const settings = {
+    dots: true,
+    infinite: myPosts.length > 3, // Infinite seulement si plus de 3 posts
+    speed: 500,
+    slidesToShow: Math.min(3, myPosts.length), // Ne montrez pas plus de diapositives qu'il n'y a de posts
+    slidesToScroll: 2,
+    autoplay: myPosts.length > 3, // Autoplay seulement si plus de 3 posts
+    autoplaySpeed: 4000,
+};
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {

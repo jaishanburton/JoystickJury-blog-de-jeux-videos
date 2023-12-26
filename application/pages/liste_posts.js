@@ -30,18 +30,14 @@ function PostsPage() {
     fetchPosts();
   }, []);
 
-  const filteredPosts = searchTerm
-    ? posts.filter(post =>
-        post.nom_du_jeu.toLowerCase().includes(searchTerm.toLowerCase()))
-    : posts;
-
+  // Paramètres pour le carrousel adaptés pour afficher 3 posts à la fois
   const postSettings = {
     dots: true,
-    infinite: filteredPosts.length > 2,
+    infinite: posts.length > 3,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: filteredPosts.length > 2,
+    slidesToScroll: 3,
+    autoplay: posts.length > 3,
     autoplaySpeed: 4000,
   };
 
@@ -50,24 +46,25 @@ function PostsPage() {
   };
 
   const renderPost = (post) => (
-    <div key={post.id} className="p-2" onClick={() => handlePostClick(post.id)}>
-      <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
-        <Image
+    <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>
+      <div
+        className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer"
+      >
+        <img
           src={post.nom_image}
           alt={`Image du jeu ${post.nom_du_jeu}`}
-          width={300}
-          height={300}
-          layout="responsive"
+          className="w-full object-contain" // La classe object-contain assure que l'image garde ses proportions
+          style={{ height: '250px' }} // Hauteur fixe pour toutes les images
         />
-        <div className="p-6">
+        <div className="p-6 flex flex-col justify-between flex-grow">
           <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
-          <p className="text-gray-700">{post.contenu_du_jeu}</p>
+          <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
           <p className="text-gray-500 text-sm">Catégorie: {post.categorie}</p>
-          <p className="text-gray-500 text-sm">Email: {post.email}</p>
         </div>
       </div>
     </div>
   );
+  
 
   return (
     <>
@@ -85,15 +82,11 @@ function PostsPage() {
           />
         </div>
 
-        {filteredPosts.length > 1 ? (
-          <Slider {...postSettings}>
-            {filteredPosts.map(post => renderPost(post))}
-          </Slider>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {filteredPosts.map(post => renderPost(post))}
-          </div>
-        )}
+        <Slider {...postSettings}>
+          {posts.filter(post =>
+            post.nom_du_jeu.toLowerCase().includes(searchTerm.toLowerCase())
+          ).map(renderPost)}
+        </Slider>
       </div>
       <Footer />
     </>
