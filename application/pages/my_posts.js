@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { createClient } from '@supabase/supabase-js';
 import { TrashIcon } from '@heroicons/react/outline'; 
+import { PencilAltIcon } from '@heroicons/react/outline';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 // Initialisez le client Supabase ici, en dehors du composant
@@ -72,6 +73,13 @@ const settings = {
   }, []);
 
 
+  const handleEdit = (postId) => {
+    // Rediriger l'utilisateur vers la page de modification du post
+    router.push(`/edit-post/${postId}`);
+};
+
+
+
   // Gérer le clic sur le post pour naviguer vers la page de détail
   const handlePostClick = (post) => {
     router.push({
@@ -134,7 +142,10 @@ const settings = {
                     <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
                     <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
                   </div>
-                  {/* Icône de la poubelle pour la suppression */}
+                  <PencilAltIcon className="h-6 w-6 absolute top-2 right-8 text-blue-600 cursor-pointer"  onClick={(e) => {
+                    e.stopPropagation(); // Empêcher l'événement de clic de la carte
+                    handleEdit(post.id);
+                  }} />
                   <TrashIcon className="h-6 w-6 absolute top-2 right-2 text-red-600 cursor-pointer" onClick={(e) => {
                     e.stopPropagation(); // Empêcher l'événement de clic de la carte
                     handleDelete(post.id);

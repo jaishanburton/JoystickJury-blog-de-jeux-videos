@@ -142,7 +142,7 @@ export async function getServerSideProps({ params }) {
     .select(`
       id,
       comment_text,
-      email,
+      user_id,
       created_at
     `)
     .eq('post_id', params.post_id);
