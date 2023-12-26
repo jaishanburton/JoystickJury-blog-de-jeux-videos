@@ -82,24 +82,25 @@ useEffect(() => {
 
           
 
-  return (
+return (
     <>
       <Header />
-      <div className="container mx-auto my-8 p-4">
-        <h1 className="text-3xl font-bold mb-6">{post.nom_du_jeu}</h1>
-        <Image
-          src={post.nom_image}
-          alt={`Image du jeu ${post.nom_du_jeu}`}
-          width={600}
-          height={400}
-          layout="responsive"
-        />
-        <p className="mt-4">{post.contenu_du_jeu}</p>
-        <p className="text-sm text-gray-500">Catégorie: {post.categorie}</p>
-        <p className="text-sm text-gray-500">Email: {post.email}</p>
+      <div className="container mx-auto my-8 p-4 flex md:flex-row flex-col gap-4">
+        <div className="flex-1 mb-8 md:mb-0">
+          <h1 className="text-3xl font-bold mb-6">{post.nom_du_jeu}</h1>
+          <Image
+            src={post.nom_image}
+            alt={`Image du jeu ${post.nom_du_jeu}`}
+            width={600}
+            height={400}
+            layout="responsive"
+          />
+          <p className="mt-4">{post.contenu_du_jeu}</p>
+          <p className="text-sm text-gray-500">Catégorie: {post.categorie}</p>
+          <p className="text-sm text-gray-500">Email: {post.email}</p>
+        </div>
 
-        {/* Espace commentaires */}
-        <div className="my-8">
+        <div className="flex-1">
           <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
           <form onSubmit={handleCommentSubmit} className="mb-4">
             <textarea
@@ -109,38 +110,19 @@ useEffect(() => {
               className="w-full border p-2 rounded-md mb-2"
               required
             />
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Poster</button>
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              Poster
+            </button>
           </form>
           <div className="space-y-4">
-  {comments.map((comment, index) => {
-    if (!comment) {
-      // Gérez le cas où le commentaire est null ou undefined
-      return <div key={index}>Chargement du commentaire...</div>;
-    }
-
-    // Convertissez la chaîne de date en objet Date JavaScript
-    const commentDate = new Date(comment.created_at);
-
-    // Formatez la date comme vous le souhaitez, par exemple '1 Jan 2020 14:00'
-    const displayDate = commentDate.toLocaleDateString('fr-FR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-
-    return (
-        <div key={index} className="border p-2 rounded-md">
-          <p>{comment.comment_text}</p>
-          <p className="text-gray-600">Écrit par: {comment.email}</p> {/* Ajouter cette ligne */}
-          <p className="text-gray-600">Commenté le: {displayDate}</p>
-          {/* ... autres détails ... */}
-        </div>
-      );
-      
-  })}
-</div>
+            {comments.map((comment, index) => (
+              <div key={index} className="border p-2 rounded-md">
+                <p>{comment.comment_text}</p>
+                <p className="text-gray-600">Écrit par: {comment.email}</p>
+                <p className="text-gray-600">Commenté le: {new Date(comment.created_at).toLocaleString()}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
