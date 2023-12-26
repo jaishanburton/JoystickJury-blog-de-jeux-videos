@@ -33,8 +33,6 @@ function Post() {
               setUsername(session.user.user_metadata.full_name);
               setUserEmail(session.user.email);
               setLoading(false);
-            } else {
-              router.push('/login');
             }
           });
           }, [supabaseClient]);
