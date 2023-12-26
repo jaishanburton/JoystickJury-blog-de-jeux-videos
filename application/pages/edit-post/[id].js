@@ -9,6 +9,14 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const categories = {
+  'Jeux de sport': ['FC24', 'NBA2K24', 'UFC 5', 'Just Dance 2024', 'FIFA 23'],
+  'Jeux de guerre': ['Call Of Duty: MW3', 'Call Of Duty: MW2', 'Call Of Duty: BO4', 'Call Of Duty: BO3', 'Call Of Duty: Warzone'],
+  'Jeux d\'aventure': ['The Legend of Zelda: Breath of the Wild', 'Uncharted 4', 'Red Dead Redemption 2', 'Assassin’s Creed Valhalla', 'Tomb Raider'],
+  'Jeux de manga': ['Naruto Shippuden: Ultimate Ninja Storm 4', 'Dragon Ball FighterZ', 'One Piece: Pirate Warriors 4', 'Attack on Titan 2', 'My Hero One’s Justice']
+};
+
+
 const EditPost = ({ post }) => {
   const [formData, setFormData] = useState({
     categorie: '',
@@ -48,8 +56,8 @@ const EditPost = ({ post }) => {
       setError(error.message);
     } else {
       // Redirect or show success message
-      console.log('Post updated successfully:', data);
-      router.push('/some-success-page');
+      window.alert('Post modifié avec succès!');
+      router.push('/my_posts');
     }
   };
 
