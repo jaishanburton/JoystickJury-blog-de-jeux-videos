@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}', './src/**/*.{html,js,ts,jsx,tsx}'],
+  content: [
+    // Assurez-vous que tous vos chemins sont correctement spécifiés
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    // Ajoutez d'autres chemins si nécessaire
+  ],
+  darkMode: 'class', // Activez le mode sombre avec des classes
   theme: {
     extend: {},
   },
@@ -8,5 +14,6 @@ module.exports = {
     require('tailwindcss-font-inter'), // Plugin tailwindcss-font-inter
     require('@tailwindcss/typography'), // Plugin @tailwindcss/typography
     require('@tailwindcss/forms'), // Plugin @tailwindcss/forms
+    // Vous pouvez ajouter d'autres plugins si nécessaire
   ],
 }

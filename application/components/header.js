@@ -2,37 +2,55 @@ import React from 'react';
 import { useUser } from '@supabase/auth-helpers-react';
 import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
-
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-const NavigationLink = ({ children, href = "#" }) => {
-    return (
-      <Link href={href}>
-<span className="nav-link hover:text-blue-600 decoration-2 underline-offset-8 transition-all duration-500 ease-in-out cursor-pointer">
-  {children}
-</span>
-      </Link>
-    );
-  };
-  
+const NavigationLink = ({ children, href, darkMode }) => {
+  return (
+    <Link href={href} passHref>
+      <span className={`nav-link hover:text-blue-600 decoration-2 underline-offset-8 transition-all duration-500 ease-in-out cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+        {children}
+      </span>
+    </Link>
+  );
+};
+
 function Header() {
-    const user = useUser();
-  
-    return (
-        <header className="bg-white p-4 flex justify-between items-center w-full">
-            <span className="text-4xl font-bold">JoystickJury</span>
-            <nav className="flex gap-16">
-                <NavigationLink href="/">Accueil</NavigationLink>
-                <NavigationLink href="/about">A propos</NavigationLink>
-                <NavigationLink href="/trailers">Bandes-Annonces</NavigationLink>
-                <NavigationLink href="/liste_posts">Liste des posts</NavigationLink>
-                <NavigationLink href="/my_posts">Mes posts</NavigationLink>
-                <NavigationLink href="/contacts">Contacts</NavigationLink>
-                <NavigationLink href="/post">Publier</NavigationLink>
-                {user ? <LoggedIn /> : <NavigationLink href="/login">Connexion</NavigationLink>}
-            </nav>
-        </header>
-    );
-  }
-  
+  const user = useUser();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDarkMode);
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode.toString());
+    document.documentElement.classList.toggle('dark', newDarkMode);
+  };
+
+  return (
+    <header className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} p-4 flex justify-between items-center w-full`}>
+      <span className="text-4xl font-bold">JoystickJury</span>
+      <nav className="flex gap-4 items-center">
+        <NavigationLink href="/" darkMode={darkMode}>Accueil</NavigationLink>
+        <NavigationLink href="/about" darkMode={darkMode}>A propos</NavigationLink>
+        <NavigationLink href="/trailers" darkMode={darkMode}>Bandes-Annonces</NavigationLink>
+        <NavigationLink href="/liste_posts" darkMode={darkMode}>Liste des posts</NavigationLink>
+        <NavigationLink href="/my_posts" darkMode={darkMode}>Mes posts</NavigationLink>
+        <NavigationLink href="/contacts" darkMode={darkMode}>Contacts</NavigationLink>
+        <NavigationLink href="/post" darkMode={darkMode}>Publier</NavigationLink>
+        {user ? <LoggedIn darkMode={darkMode} /> : <NavigationLink href="/login" darkMode={darkMode}>Connexion</NavigationLink>}
+
+      </nav>
+      <button onClick={toggleDarkMode} className={`p-2 rounded-md ${darkMode ? 'bg-gray-300 text-gray-900' : 'bg-gray-600 text-white'}`}>
+        {darkMode ? 'Mode Clair 🌞' : 'Mode Sombre 🌜'}
+      </button>
+    </header>
+  );
+}
+
 export default Header;

@@ -114,3 +114,10 @@ nav.principal{
 .nav-link:hover::after {
   width: 100%; /* La largeur devient 100% au survol pour afficher le soulignement */
 }
+
+.bg-custom { background-color: white; }
+.dark .bg-custom { background-color: black; }
+
+.text-custom { color: black; }
+.dark .text-custom { color: white; }
+
