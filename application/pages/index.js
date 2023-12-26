@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -6,19 +6,23 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../app/globals.css';
+import { createClient } from '@supabase/supabase-js';
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // Données pour les jeux
 const games = [
-  { src: '/images/nba2k24-pc.jpg', title: 'NBA 2K24', description: 'Le basketball à son apogée.' },
-  { src: '/images/fc24-pc.jpg', title: 'FIFA 24', description: 'Découvrez le frisson du football mondial.' },
+  { src: '/images/nba2k24-pc.jpg', title: 'NBA2K24', description: 'Le basketball à son apogée.' },
+  { src: '/images/fc24-pc.jpg', title: 'FC24', description: 'Découvrez le frisson du football mondial.' },
   { src: '/images/dragonballfighterz-pc.jpg', title: 'Dragon Ball FighterZ', description: 'Des combats épiques vous attendent.' },
-  { src: '/images/codwarzone-pc.jpg', title: 'Call of Duty: Warzone', description: 'Survivez dans ce Battle Royale intense.' },
+  { src: '/images/codwarzone-pc.jpg', title: 'Call Of Duty: Warzone', description: 'Survivez dans ce Battle Royale intense.' },
   { src: '/images/fifa23-pc.jpg', title: 'FIFA 23', description: 'Affrontez des équipes du monde entier.' },
-  { src: '/images/onepiecepiratewarriors4-pc.jpg', title: 'One Piece Pirate Warriors 4', description: 'Rejoignez Luffy et son équipage dans leurs aventures.' },
-  { src: '/images/narutostorm4-pc.jpg', title: 'Naruto Storm 4', description: 'Combattez avec vos ninjas favoris.' },
+  { src: '/images/onepiecepiratewarriors4-pc.jpg', title: 'One Piece: Pirate Warriors 4', description: 'Rejoignez Luffy et son équipage dans leurs aventures.' },
+  { src: '/images/narutostorm4-pc.jpg', title: 'Naruto Shippuden: Ultimate Ninja Storm 4', description: 'Combattez avec vos ninjas favoris.' },
   { src: '/images/acvalhalla-pc.jpg', title: 'Assassin’s Creed Valhalla', description: 'Vivez la saga épique du Viking.' },
-  { src: '/images/codmw2-pc.jpg', title: 'Call of Duty: Modern Warfare 2', description: 'Une aventure pleine d\'action et de stratégie.' },
-  { src: '/images/codbo3-pc.jpg', title: 'Call of Duty: Black Ops III', description: 'Un futur sombre et complexe.' },
+  { src: '/images/codmw2-pc.jpg', title: 'Call Of Duty: MW2', description: 'Une aventure pleine d\'action et de stratégie.' },
+  { src: '/images/codbo3-pc.jpg', title: 'Call Of Duty: BO3', description: 'Un futur sombre et complexe.' },
 ];
 
 
@@ -35,14 +39,37 @@ const settings = {
 };
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
   const router = useRouter();
 
+  // Charger les posts une fois au chargement de la page
+  useEffect(() => {
+    async function fetchPosts() {
+      let { data: fetchedPosts, error } = await supabase
+        .from('posts')
+        .select('*');
+      
+      if (error) console.log('Error fetching posts', error);
+      else setPosts(fetchedPosts);
+    }
+
+    fetchPosts();
+  }, []);
+
   const handleGameClick = (game) => {
-    router.push({
-      pathname: '/post',
-      query: { game: JSON.stringify(game) }, 
-    });
+    const gamePosts = posts.filter(post => post.nom_du_jeu === game.title);
+    console.log(gamePosts); // Ajoutez ceci pour déboguer
+    const lastPost = gamePosts[gamePosts.length - 1];
+  
+    if (lastPost) {
+      console.log('Redirection vers', `/posts/${lastPost.id}`); // Ajoutez ceci pour déboguer
+      router.push(`/posts/${lastPost.id}`);
+    } else {
+      console.log('Aucun post trouvé pour ce jeu'); // Ceci apparaîtra dans la console si aucun post n'est trouvé
+    }
   };
+  
+  
   return (
     <>
       <Header />
