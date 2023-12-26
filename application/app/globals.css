@@ -8,7 +8,35 @@
     all: unset;
   }
 }
+.trailer-item {
+  display: flex;
+  flex-direction: column;
+}
 
+.trailer-title {
+  height: 4.5em; 
+  overflow: hidden; 
+  margin-bottom: 1em;
+}
+
+.video-title {
+  min-height: 64px; /* Ajustez en fonction de la taille de votre police et de l'espacement souhaité */
+}
+
+/* Utilisez un wrapper pour maintenir le ratio de l'iframe */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .game-card img {
   object-fit: contain;

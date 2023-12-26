@@ -24,6 +24,7 @@ function Header() {
             <nav className="flex gap-16">
                 <NavigationLink href="/">Accueil</NavigationLink>
                 <NavigationLink href="/about">A propos</NavigationLink>
+                <NavigationLink href="/trailers">Bandes-Annonces</NavigationLink>
                 <NavigationLink href="/liste_posts">Liste des posts</NavigationLink>
                 <NavigationLink href="/my_posts">Mes posts</NavigationLink>
                 <NavigationLink href="/contacts">Contacts</NavigationLink>
