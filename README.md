@@ -82,6 +82,11 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Commentaire : Nous avons durant ce projet pris soin de de correctement indenter, d'espacer et de rédiger des commentaires dans le but d'amméliorer la compréhensibilité de notre projet.
   - Retour : Nous avions déjà pour habitude de indenter et commenter nos codes et projets cette tâche était ainsi facilité.
 
+- Design, UX, and content
+  - Note : 4
+  - Commentaire : Nous avons rendu notre application facile d'utilisation permettant une bonne expérience utilisateur via un designe reponsive et une large utilisation de la bibliothèque Tailwind.
+  - Retour : Cette tâche complexe nous a premis d'en apprendre beaucoup sur l'UX et le designe d'interface.
+
 
 ## Divers
 
