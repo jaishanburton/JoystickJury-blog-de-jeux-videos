@@ -64,23 +64,23 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 - Naming Convention
   - Note : 2
-  - Commentaire : Nous avons suivit la convention de nommage des fichier
-  - Retour : Cette tâche facile nous a permis de découvrir les conventions du développent web
+  - Commentaire : Nous avons suivi la convention de nommage des fichiers.
+  - Retour : Cette tâche facile nous a permis de découvrir les conventions du développement web.
 
 - Project structure
   - Note : 2
-  - Commentaire : Nous avons suivit la structure d'application web
-  - Retour : Cette tâche facile nous a permis de savoir comment structurer un projet de développement web
+  - Commentaire : Nous avons suivi la structure d'application web.
+  - Retour : Cette tâche facile nous a permis de savoir comment structurer un projet de développement web.
 
 - Git usage
   - Note : 2
-  - Commentaire : Nous avons suit les conventions des commits. Nous avons principalement utiliser "fix: " pour les petits correctifs et "feat: " pour les nouvelles fonctionnalités
-  - Retour : Cette tâche facile nous a permis d'apprendre les conventions des commits
+  - Commentaire : Nous avons suivi les conventions des commits. Nous avons principalement utilisé "fix: " pour les petits correctifs et "feat: " pour les nouvelles fonctionnalités.
+  - Retour : Cette tâche facile nous a permis d'apprendre les conventions des commits.
 
 - Code quality
   - Note : 4
-  - Commentaire : Nous avons durant ce projet pris soin de de correctement indenter, d'espacer et de rédiger des commentaires dans le but d'amméliorer la compréhensibilité de notre projet.
-  - Retour : Nous avions déjà pour habitude de indenter et commenter nos codes et projets cette tâche était ainsi facilité.
+  - Commentaire : Nous avons durant ce projet pris soin de correctement indenter, d'espacer et de rédiger des commentaires dans le but d'améliorer la compréhensibilité de notre projet.
+  - Retour : Nous avions déjà pour habitude d'indenter et commenter nos codes et projets cette tâche était ainsi facilitée.
 
 - Design, UX, and content
   - Note : 4
@@ -91,18 +91,47 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 - Home page
   - Note : 2
-  - Commentaire : Nous avons créer une page d'acceuil acceuillante avec des "call to action"
+  - Commentaire : Nous avons créé une page d'accueil acceuillante avec des "call to action".
 
 - Navigation
   - Note : 2
-  - Commentaire : Nous avons créer une barre de navigation permettant de rejoindre toutes les pages
+  - Commentaire : Nous avons créé une barre de navigation permettant de rejoindre toutes les pages.
 
 - Login and profile page
-  - Commentaire : Nous avons créer une page d'autentification et de connection avec un moyen de ce connecter avec Github. Nous pouvons ainsi voir les posts précédents
+  - Note : 4
+  - Commentaire : Nous avons créé une page d'authentification et de connexion avec un moyen de se connecter avec Github. Nous pouvons ainsi voir les posts que nous avions écrits précédemment.
+ 
+- Post creation and display
+  - Note : 6
+  - Commentaire : Nous avons créé un form permettant de choisir un jeu et de rédiger un post sur un jeu, de le partager et de le stocker dans la base de données. Les post sont public et sont rédigeable uniquement par des utilisateurs authentifiés.
+
+- Comment creation and display
+  - Note : 4
+  - Commentaire : Nous avons créé un bouton de commenter les posts de jeux vidéo depuis la page du post. Nous conservons le commentaire et le mail de l'utilisateur dans la base de données.
+
+- Post modification and removal
+  - Note : 4
+  - Commentaire :  Nous avons créé un bouton dans la page "Mes posts" permettant d'éditer ou supprimer un post.
+
+- Search
+  - Note : 6
+  - Commentaire : Nous avons créé une barre de recherche permettant de rechercher des posts. La recherche est effectuée en "server-side".
+
+- Use an external API
+  - Note : 2
+  - Commentaire : Nous avons utilisé l'API de google pour des vidéos Youtube visible sur la page des trailers.
+
+ - Resource access control
+  - Note : 6
+  - Commentaire : Nous avons configuré notre connexion avec supabase via RLS pour évité les accès inatendus et les tentatives d'intrusion. Ainsi seuls les utilisateurs authentifiés peuvent créer des posts et ne peuvent modifier que leurs prosts.
+
+- Light/dark mode
+  - Note : 2
+  - Commentaire : Nous avons implémenté un dark mode permettant de passer l'header d'un mode clair à un mode sombre persistant d'une page à l'autre.
 ## Divers
 
 ### Retour du cours
-
+Nous avons beaucoup apprécier ce cours. Il nous a permis de découvrir le développement d'applications web et d'en connaitre les bases et les outils. 
 
 ### Réutilisation du projet
  Nous autorisons notre professeur l'utilisation de ce projet comme exemple pour les étudiants des prochaine années
