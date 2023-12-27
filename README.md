@@ -77,7 +77,10 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Commentaire : Nous avons suit les conventions des commits. Nous avons principalement utiliser "fix: " pour les petits correctifs et "feat: " pour les nouvelles fonctionnalités
   - Retour : Cette tâche facile nous a permis d'apprendre les conventions des commits
 
-
+- Code quality
+  - Note : 4
+  - Commentaire : Nous avons durant ce projet pris soin de de correctement indenter, d'espacer et de rédiger des commentaires dans le but d'amméliorer la compréhensibilité de notre projet.
+  - Retour : Nous avions déjà pour habitude de indenter et commenter nos codes et projets cette tâche était ainsi facilité.
 
 
 ## Divers
