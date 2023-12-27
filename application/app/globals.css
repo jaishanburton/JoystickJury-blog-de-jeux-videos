@@ -121,3 +121,22 @@ nav.principal{
 .text-custom { color: black; }
 .dark .text-custom { color: white; }
 
+.like-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.heart {
+  color: red;
+  margin-right: 5px;
+}
+
+.likes-count {
+  font-size: 14px;
+}
+
+.liked {
+  color: blue; 
+}
+

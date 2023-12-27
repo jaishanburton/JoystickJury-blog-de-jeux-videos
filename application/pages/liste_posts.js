@@ -16,7 +16,18 @@ function PostsPage() {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
+  const fetchPosts = async () => {
+    let { data: fetchedPosts, error } = await supabase
+      .from('posts')
+      .select('*');
+    
+    if (error) console.log('Error fetching posts', error);
+    else setPosts(fetchedPosts);
+  };
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   useEffect(() => {
     async function fetchPosts() {
       let { data: fetchedPosts, error } = await supabase
@@ -49,25 +60,81 @@ function PostsPage() {
     router.push(`/posts/${postId}`);
   };
 
-  const renderPost = (post) => (
-    <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>
-      <div
-        className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer"
-      >
-        <img
-          src={post.nom_image}
-          alt={`Image du jeu ${post.nom_du_jeu}`}
-          className="w-full object-contain" // La classe object-contain assure que l'image garde ses proportions
-          style={{ height: '250px' }} // Hauteur fixe pour toutes les images
-        />
-        <div className="p-6 flex flex-col justify-between flex-grow">
-          <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
-          <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
-          <p className="text-gray-500 text-sm">Catégorie: {post.categorie}</p>
+  const handleLike = async (postId) => {
+    const postIndex = posts.findIndex(post => post.id === postId);
+    if (postIndex === -1) return; // Si le post n'est pas trouvé, ne rien faire
+  
+    const postToUpdate = posts[postIndex];
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+  
+    let newLikes;
+    if (likedPosts[postId]) {
+      // Si le post a déjà été liké, décrémentez le nombre de likes
+      newLikes = postToUpdate.likes > 0 ? postToUpdate.likes - 1 : 0;
+      delete likedPosts[postId];
+    } else {
+      // Sinon, incrémente le nombre de likes
+      newLikes = (postToUpdate.likes || 0) + 1;
+      likedPosts[postId] = true;
+    }
+  
+    // Mettre à jour le post dans Supabase
+    const { error } = await supabase
+      .from('posts')
+      .update({ likes: newLikes })
+      .eq('id', postId);
+  
+    if (error) {
+      console.error('Error updating likes', error);
+    } else {
+      // Mettre à jour l'état local des posts sans faire appel à fetchPosts
+      const newPosts = [...posts];
+      newPosts[postIndex] = { ...postToUpdate, likes: newLikes };
+      setPosts(newPosts);
+  
+      // Mettre à jour le localStorage
+      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    }
+  };
+  
+  
+  
+
+  const renderPost = (post) => {
+    // Récupérer les posts likés depuis le localStorage
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+    const isLiked = likedPosts[post.id];
+  
+    // Gestion du clic sur le bouton de like
+    const handleLikeClick = (e, postId) => {
+      e.stopPropagation(); // Empêche l'événement de clic du post
+      handleLike(postId); // Appelle la fonction handleLike
+    };
+  
+    return (
+      <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>
+        <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer">
+          <img
+            src={post.nom_image}
+            alt={`Image du jeu ${post.nom_du_jeu}`}
+            className="w-full object-contain"
+            style={{ height: '250px' }}
+          />
+          <div className="p-6 flex flex-col justify-between flex-grow">
+            <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
+            <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
+            <p className="text-gray-500 text-sm">Catégorie: {post.categorie}</p>
+          </div>
+          <div className="like-button" onClick={(e) => handleLikeClick(e, post.id)}>
+            <span className={`heart ${isLiked ? 'liked' : ''}`}>❤️</span>
+            <span className="likes-count">{post.likes}</span>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
+  
+  
   
   return (
     <>
