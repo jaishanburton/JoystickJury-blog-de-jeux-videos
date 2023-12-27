@@ -87,6 +87,12 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Commentaire : Nous avons rendu notre application facile d'utilisation permettant une bonne expérience utilisateur via un designe reponsive et une large utilisation de la bibliothèque Tailwind.
   - Retour : Cette tâche complexe nous a premis d'en apprendre beaucoup sur l'UX et le designe d'interface.
 
+### Fonctionnalité de l'application
+
+- Home page
+  - Note : 2
+  - Commentaire : Nous avons créer une page d'acceuil acceuillante avec des "call to action"
+
 
 ## Divers
 
