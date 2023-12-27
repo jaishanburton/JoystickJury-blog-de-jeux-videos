@@ -5,12 +5,21 @@ import Image from 'next/image';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import CryptoJS from 'crypto-js';
+
 
 
 // Initialisez Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const getGravatarUrl = (email) => {
+  const trimmedEmail = email.trim().toLowerCase();
+  const md5Hash = CryptoJS.MD5(trimmedEmail).toString();
+  return `https://www.gravatar.com/avatar/${md5Hash}?d=identicon&s=200`;
+};
+
 
 const PostDetails = ({ post, initialComments }) => {
   const [comments, setComments] = useState(initialComments);
@@ -118,11 +127,18 @@ return (
             {comments.map((comment, index) => (
               <div key={index} className="border p-2 rounded-md">
                 <p>{comment.comment_text}</p>
-                <p className="text-gray-600">Écrit par: {comment.email}</p>
-                <p className="text-gray-600">Commenté le: {new Date(comment.created_at).toLocaleString()}</p>
-              </div>
-            ))}
+                <div className="flex items-center">
+                  <img
+                    src={getGravatarUrl(comment.email)}
+                    alt="User avatar"
+                    className="w-8 h-8 rounded-full mr-2"
+                  />
+              <p className="text-gray-600">Écrit par: {comment.email}</p>
+            </div>
+            <p className="text-gray-600">Commenté le: {new Date(comment.created_at).toLocaleString()}</p>
           </div>
+  ))}
+</div>
         </div>
       </div>
       <Footer />
