@@ -65,10 +65,13 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 - Naming Convention
   - Note : 2
   - Commentaire : Nous avons suivit la convention de nommage des fichier
-  - Retour : Cette tâche nous a permis de découvrir les conventions du développent web
+  - Retour : Cette tâche facile nous a permis de découvrir les conventions du développent web
 
-  
- 
+- Project structure
+  - Note : 2
+  - Commentaire : Nous avons suivit la structure d'application web
+  - Retour : Cette tâche facile nous a permis de savoir comment structurer un projet de développement web
+
 ## Divers
 
 ### Retour du cours
