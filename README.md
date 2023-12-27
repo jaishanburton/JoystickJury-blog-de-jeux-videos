@@ -93,6 +93,10 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Note : 2
   - Commentaire : Nous avons créer une page d'acceuil acceuillante avec des "call to action"
 
+- Navigation
+  - Note : 2
+  - Commentaire : Nous avons créer une barre de navigation permettant de rejoindre toutes les pages
+
 
 ## Divers
 
