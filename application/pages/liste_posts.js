@@ -100,39 +100,43 @@ function PostsPage() {
   
   
 
-  const renderPost = (post) => {
-    // Récupérer les posts likés depuis le localStorage
-    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
-    const isLiked = likedPosts[post.id];
-  
-    // Gestion du clic sur le bouton de like
-    const handleLikeClick = (e, postId) => {
-      e.stopPropagation(); // Empêche l'événement de clic du post
-      handleLike(postId); // Appelle la fonction handleLike
-    };
-  
-    return (
-      <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>
-        <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer">
-          <img
-            src={post.nom_image}
-            alt={`Image du jeu ${post.nom_du_jeu}`}
-            className="w-full object-contain"
-            style={{ height: '250px' }}
-          />
-          <div className="p-6 flex flex-col justify-between flex-grow">
-            <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
-            <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
-            <p className="text-gray-500 text-sm">Catégorie: {post.categorie}</p>
-          </div>
-          <div className="like-button" onClick={(e) => handleLikeClick(e, post.id)}>
-            <span className={`heart ${isLiked ? 'liked' : ''}`}>❤️</span>
-            <span className="likes-count">{post.likes}</span>
-          </div>
+const renderPost = (post) => {
+  // Récupérer l'état des likes depuis le localStorage
+  const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+  // Vérifiez si l'utilisateur actuel a liké ce post spécifique
+  const isLikedByCurrentUser = likedPosts[post.id];
+
+  const handleLikeClick = (e, postId) => {
+    e.stopPropagation(); // Empêche l'événement de clic du post
+    handleLike(postId); // Appelle la fonction handleLike
+  };
+
+  // Choisissez l'icône à afficher
+  const heartIcon = isLikedByCurrentUser ? '❤️' : '🤍'; // Cœur plein si liké, sinon cœur vide
+
+  return (
+    <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>
+      <div className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer">
+        <img
+          src={post.nom_image}
+          alt={`Image du jeu ${post.nom_du_jeu}`}
+          className="w-full object-contain"
+          style={{ height: '250px' }}
+        />
+        <div className="p-6 flex flex-col justify-between flex-grow">
+          <h3 className="font-bold text-xl mb-2">{post.nom_du_jeu}</h3>
+          <p className="text-gray-700 text-base">{post.contenu_du_jeu}</p>
+          <p className="text-gray-500 text-sm">Catégorie: {post.categorie}</p>
+        </div>
+        <div className="like-button" onClick={(e) => handleLikeClick(e, post.id)}>
+          <span className={`heart ${isLikedByCurrentUser ? 'liked' : ''}`}>{heartIcon}</span>
+          <span className="likes-count">{post.likes}</span>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
   
   
   
