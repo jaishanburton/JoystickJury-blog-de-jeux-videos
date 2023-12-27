@@ -41,20 +41,22 @@ const settings = {
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
+  const [darkMode, setDarkMode] = useState(false);
 
-  // Charger les posts une fois au chargement de la page
   useEffect(() => {
-    async function fetchPosts() {
-      let { data: fetchedPosts, error } = await supabase
-        .from('posts')
-        .select('*');
-      
-      if (error) console.log('Error fetching posts', error);
-      else setPosts(fetchedPosts);
-    }
-
-    fetchPosts();
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDarkMode);
+    document.documentElement.classList.toggle('dark', isDarkMode);
   }, []);
+
+
+ // Basculer le thème et le stocker dans localStorage
+ const toggleDarkMode = () => {
+  const newDarkMode = !darkMode;
+  setDarkMode(newDarkMode);
+  localStorage.setItem('darkMode', newDarkMode.toString());
+  document.documentElement.classList.toggle('dark', newDarkMode);
+};
 
   const handleGameClick = (game) => {
     const gamePosts = posts.filter(post => post.nom_du_jeu === game.title);
@@ -69,31 +71,30 @@ const Home = () => {
     }
   };
   
-  
   return (
     <>
-      <Header />
-      <main className="min-h-screen bg-gray-100">
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <main className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
         {/* Hero Section */}
-        <section className="text-center py-20 bg-gray-700 text-white">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-gray-700'} text-center py-20 text-white`}>
           <h1 className="text-5xl font-bold mb-6">Bienvenue sur JoystickJury!</h1>
           <p className="text-xl">Votre source ultime pour les critiques et les nouvelles de jeux vidéo.</p>
         </section>
 
         {/* Games Section */}
         <section className="container mx-auto py-20">
-          <h2 className="text-4xl text-center font-bold mb-12">Les incontournables</h2>
+          <h2 className={`text-4xl text-center font-bold mb-12 ${darkMode ? 'text-white' : 'text-black'}`}>Les incontournables</h2>
           <Slider {...settings}>
             {games.map((game, index) => (
               <div key={index} className="p-2 game-card">
                 <div
-                  className="bg-white rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer"
+                  className={`bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg h-full flex flex-col transform transition duration-300 hover:scale-105 cursor-pointer`}
                   onClick={() => handleGameClick(game)}
                 >
                   <img src={game.src} alt={game.title} className="w-full object-contain" style={{ height: '250px' }} />
                   <div className="p-6 flex flex-col justify-between flex-grow">
-                    <h3 className="font-bold text-xl mb-2">{game.title}</h3>
-                    <p className="text-gray-700 text-base">{game.description}</p>
+                  <h3 className={`font-bold text-xl mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>{game.title}</h3>
+                    <p className={`text-gray-700 dark:text-gray-200 text-base`}>{game.description}</p>
                   </div>
                 </div>
               </div>
@@ -102,10 +103,10 @@ const Home = () => {
         </section>
 
         {/* About Section */}
-        <section className="bg-blue-600 text-white py-20">
+        <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} text-white dark:text-white py-20`}>
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">À propos de JoystickJury</h2>
-            <p className="text-xl">Nous sommes une équipe passionnée par le monde du gaming. Notre mission est de vous apporter les critiques les plus honnêtes et les informations les plus récentes sur vos jeux préférés.</p>
+            <p className={`text-xl ${darkMode ? 'text-white' : 'text-gray-900'}`}>Nous sommes une équipe passionnée par le monde du gaming. Notre mission est de vous apporter les critiques les plus honnêtes et les informations les plus récentes sur vos jeux préférés.</p>
           </div>
         </section>
       </main>
