@@ -4,7 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 
-// Supabase initialization outside of the component
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -41,21 +40,18 @@ const EditPost = ({ post }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add logic to update the post in the database
     const { data, error } = await supabase
       .from('posts')
       .update({
         categorie: formData.categorie,
         nom_du_jeu: formData.nom_du_jeu,
         contenu_du_jeu: formData.contenu_du_jeu,
-        // ... other fields
       })
       .eq('id', post.id);
 
     if (error) {
       setError(error.message);
     } else {
-      // Redirect or show success message
       window.alert('Post modifié avec succès!');
       router.push('/my_posts');
     }
@@ -77,43 +73,55 @@ const EditPost = ({ post }) => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form onSubmit={handleSubmit}>
-            {/* Category */}
+            {/* Catégorie */}
             <div className="mt-6">
               <label htmlFor="categorie" className="block text-sm font-medium text-gray-700">
                 Catégorie
               </label>
               <div className="mt-1">
-                <input
+                <select
                   id="categorie"
                   name="categorie"
-                  type="text"
                   value={formData.categorie}
                   onChange={handleChange}
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
+                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                >
+                  <option value="">Sélectionnez une catégorie</option>
+                  {Object.keys(categories).map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-
-            {/* Game Name */}
+  
+            {/* Nom du Jeu */}
             <div className="mt-6">
               <label htmlFor="nom_du_jeu" className="block text-sm font-medium text-gray-700">
                 Nom du jeu
               </label>
               <div className="mt-1">
-                <input
+                <select
                   id="nom_du_jeu"
                   name="nom_du_jeu"
-                  type="text"
                   value={formData.nom_du_jeu}
                   onChange={handleChange}
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
+                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                >
+                  <option value="">Sélectionnez un jeu</option>
+                  {formData.categorie && categories[formData.categorie].map((game) => (
+                    <option key={game} value={game}>
+                      {game}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-
-            {/* Game Content */}
+  
+            {/* Contenu du Jeu */}
             <div className="mt-6">
               <label htmlFor="contenu_du_jeu" className="block text-sm font-medium text-gray-700">
                 Contenu du jeu
@@ -130,9 +138,7 @@ const EditPost = ({ post }) => {
                 ></textarea>
               </div>
             </div>
-
-            
-
+  
             {/* Submit Button */}
             <div className="mt-6">
               <button
@@ -148,9 +154,9 @@ const EditPost = ({ post }) => {
       <Footer />
     </div>
   );
+  
 };
 
-// Retrieve post data for server-side rendering
 export async function getServerSideProps({ params }) {
   const { id } = params;
   try {
