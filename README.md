@@ -97,7 +97,8 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Note : 2
   - Commentaire : Nous avons créer une barre de navigation permettant de rejoindre toutes les pages
 
-
+- Login and profile page
+  - Commentaire : Nous avons créer une page d'autentification et de connection avec un moyen de ce connecter avec Github. Nous pouvons ainsi voir les posts précédents
 ## Divers
 
 ### Retour du cours
