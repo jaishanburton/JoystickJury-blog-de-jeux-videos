@@ -60,12 +60,14 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 ## Evaluation
 
-### Tâches obligatoires
+### Management du projet
 
-- Tâche
-  - Note :
-  - Commentaire :
-  - Retour :
+- Naming Convention
+  - Note : 2
+  - Commentaire : Nous avons suivit la convention de nommage des fichier
+  - Retour : Cette tâche nous a permis de découvrir les conventions du développent web
+
+  
  
 ## Divers
 
