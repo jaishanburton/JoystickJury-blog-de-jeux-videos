@@ -72,6 +72,14 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
   - Commentaire : Nous avons suivit la structure d'application web
   - Retour : Cette tâche facile nous a permis de savoir comment structurer un projet de développement web
 
+- Git usage
+  - Note : 2
+  - Commentaire : Nous avons suit les conventions des commits. Nous avons principalement utiliser "fix: " pour les petits correctifs et "feat: " pour les nouvelles fonctionnalités
+  - Retour : Cette tâche facile nous a permis d'apprendre les conventions des commits
+
+
+
+
 ## Divers
 
 ### Retour du cours
