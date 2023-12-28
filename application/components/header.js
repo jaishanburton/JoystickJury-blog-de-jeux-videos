@@ -33,23 +33,30 @@ function Header() {
   };
 
   return (
-    <header className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} p-4 flex justify-between items-center w-full`}>
-      <span className="text-4xl font-bold">JoystickJury</span>
-      <nav className="flex gap-4 items-center">
-        <NavigationLink href="/" darkMode={darkMode}>Accueil</NavigationLink>
-        <NavigationLink href="/about" darkMode={darkMode}>A propos</NavigationLink>
-        <NavigationLink href="/trailers" darkMode={darkMode}>Bandes-Annonces</NavigationLink>
-        <NavigationLink href="/liste_posts" darkMode={darkMode}>Liste des posts</NavigationLink>
-        <NavigationLink href="/my_posts" darkMode={darkMode}>Mes posts</NavigationLink>
-        <NavigationLink href="/contacts" darkMode={darkMode}>Contacts</NavigationLink>
-        <NavigationLink href="/post" darkMode={darkMode}>Publier</NavigationLink>
-        {user ? <LoggedIn darkMode={darkMode} /> : <NavigationLink href="/login" darkMode={darkMode}>Connexion</NavigationLink>}
-
-      </nav>
-      <button onClick={toggleDarkMode} className={`p-2 rounded-md ${darkMode ? 'bg-gray-300 text-gray-900' : 'bg-gray-600 text-white'}`}>
-        {darkMode ? 'Mode Clair 🌞' : 'Mode Sombre 🌜'}
+<header className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} p-4 flex justify-between items-center w-full`}>
+  <span className="text-4xl font-bold">JoystickJury</span>
+  <nav className="flex gap-4 items-center">
+    <NavigationLink href="/" darkMode={darkMode}>Accueil</NavigationLink>
+    <NavigationLink href="/about" darkMode={darkMode}>À propos</NavigationLink>
+    <NavigationLink href="/trailers" darkMode={darkMode}>Bandes-Annonces</NavigationLink>
+    <NavigationLink href="/liste_posts" darkMode={darkMode}>Liste des posts</NavigationLink>
+    <NavigationLink href="/my_posts" darkMode={darkMode}>Mes posts</NavigationLink>
+    <NavigationLink href="/contacts" darkMode={darkMode}>Contacts</NavigationLink>
+    <NavigationLink href="/post" darkMode={darkMode}>Publier</NavigationLink>
+    <NavigationLink href="/modifier_profil" darkMode={darkMode}>Modifier profil</NavigationLink>
+  </nav>
+  <div className="flex items-center gap-4">
+  <Link href="/login">
+      <button className="text-white bg-blue-500 hover:bg-blue-700 font-medium py-2 px-4 rounded-full transition duration-300 ease-in-out shadow-lg cursor-pointer ml-2">
+        Connexion
       </button>
-    </header>
+    </Link>
+
+    <button onClick={toggleDarkMode} className={`p-2 rounded-md ${darkMode ? 'bg-gray-300 text-gray-900' : 'bg-gray-600 text-white'}`}>
+      {darkMode ? 'Light 🌞' : 'Dark 🌜'}
+    </button>
+  </div>
+</header>
   );
 }
 

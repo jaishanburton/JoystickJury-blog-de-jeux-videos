@@ -122,7 +122,7 @@ const Home = () => {
         {/* About Section */}
         <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} text-white dark:text-white py-20`}>
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">À propos de JoystickJury</h2>
+            <h2 className={`text-4xl ${darkMode ? 'text-white' : 'text-gray-900'} font-bold mb-6`}>À propos de JoystickJury</h2>
             <p className={`text-xl ${darkMode ? 'text-white' : 'text-gray-900'}`}>Nous sommes une équipe passionnée par le monde du gaming. Notre mission est de vous apporter les critiques les plus honnêtes et les informations les plus récentes sur vos jeux préférés.</p>
           </div>
         </section>

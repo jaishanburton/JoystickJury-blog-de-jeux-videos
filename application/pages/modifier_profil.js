@@ -76,6 +76,7 @@ const ProfilePage = () => {
         if (profileError) throw profileError;
   
         alert('Profil mis à jour avec succès.');
+        router.push('/'); // Rediriger l'utilisateur vers la page d'accueil
       } catch (error) {
         console.error('Erreur lors de la mise à jour du profil:', error.message);
         setError(error.message);
