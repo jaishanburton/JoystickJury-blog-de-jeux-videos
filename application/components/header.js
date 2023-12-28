@@ -41,8 +41,8 @@ function Header() {
     <NavigationLink href="/trailers" darkMode={darkMode}>Bandes-Annonces</NavigationLink>
     <NavigationLink href="/liste_posts" darkMode={darkMode}>Liste des posts</NavigationLink>
     <NavigationLink href="/my_posts" darkMode={darkMode}>Mes posts</NavigationLink>
-    <NavigationLink href="/contacts" darkMode={darkMode}>Contacts</NavigationLink>
     <NavigationLink href="/post" darkMode={darkMode}>Publier</NavigationLink>
+    <NavigationLink href="/contacts" darkMode={darkMode}>Nous Contacter</NavigationLink>
     <NavigationLink href="/modifier_profil" darkMode={darkMode}>Modifier profil</NavigationLink>
   </nav>
   <div className="flex items-center gap-4">

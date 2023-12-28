@@ -37,7 +37,7 @@ const LoginPage = () => {
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }} // Appliquez le thème ThemeSupa ici
-          providers={['google', 'facebook', 'twitter', 'discord', 'github']}
+          providers={['github']}
         />
       </div>
       <Footer/>

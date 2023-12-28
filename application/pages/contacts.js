@@ -75,7 +75,7 @@ function Contacts() {
                         <textarea id="message" name="message" value={form.message} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="recontact" className="block text-sm font-medium text-gray-700">Êtes-vou ?</label>
+                        <label htmlFor="recontact" className="block text-sm font-medium text-gray-700">Voulez vous être contacté ?</label>
                         </div>
                     <div className="mb-4">
               <label className="inline-flex items-center">
