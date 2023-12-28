@@ -34,14 +34,27 @@ const PostDetails = ({ post, initialComments }) => {
 
 
   useEffect(() => {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            setUsername(session.user.user_metadata.full_name);
-            setUserEmail(session.user.email);
-            setLoading(false);
-          } 
-        });
-        }, [supabaseClient]);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        console.log('Fetching profile for user:', session.user.id); // Log pour déboguer
+          // Récupération des données de la table 'profiles'
+          supabaseClient
+              .from('profiles')
+              .select('email')
+              .eq('id', session.user.id)
+              .single()
+              .then(({ data, error }) => {
+                  if (error) {
+                      console.error('Erreur lors de la récupération des données de profil:', error);
+                  } else if (data) {
+                      setUserEmail(data.email);
+                  }
+                  setLoading(false);
+                }
+              );
+      }
+      });
+    }, [supabaseClient]);
 
 
   

@@ -50,9 +50,9 @@ function Contacts() {
 
 
     return (
-        <div className="container mx-auto px-4">
-            <Header />
-            
+        <>
+        <Header />
+        <div className="container mx-auto px-4">           
 
             <main className="mt-10">
                 <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Contactez-nous</h2>
@@ -100,9 +100,9 @@ function Contacts() {
                     </div>
                 )}
             </main>
-
-            <Footer />
         </div>
+        <Footer />
+  </>
     );
 }
 

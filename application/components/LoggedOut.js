@@ -17,7 +17,6 @@ function LoggedOut() {
             console.error("Erreur lors de la connexion :", error);
         }
     };
-
     return (
         <div>
             <button onClick={onClickLogin}>Se connecter (par défaut)</button>
