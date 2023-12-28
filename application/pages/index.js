@@ -49,6 +49,23 @@ const Home = () => {
     document.documentElement.classList.toggle('dark', isDarkMode);
   }, []);
 
+  useEffect(() => {
+    // Fonction pour récupérer les posts
+    const fetchPosts = async () => {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*');
+      if (error) {
+        console.log('Erreur de chargement des posts:', error);
+      } else {
+        setPosts(data);
+      }
+    };
+    
+    // Appel de la fonction au montage du composant
+    fetchPosts();
+  }, []); // Le tableau vide signifie que cela ne se déclenchera qu'une fois, au montage du composant
+  
 
  // Basculer le thème et le stocker dans localStorage
  const toggleDarkMode = () => {
