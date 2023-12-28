@@ -94,33 +94,55 @@ function Post() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(userEmail);
+    
+        console.log('Envoi de formulaire...');
+    
+        const { data: { session } } = await supabase.auth.getSession();
+    
+        console.log('Session:', session);
+    
+        if (!session) {
+            console.log('Pas de session');
+            setSubmitStatus({ success: false, error: true, message: 'Vous devez être connecté pour créer un post.' });
+            return;
+        }
+    
         if (!postContent.trim()) {
+            console.log('Contenu du post vide');
             setSubmitStatus({ success: false, error: true, message: 'Le contenu du post ne peut pas être vide.' });
             return;
         }
     
-        // Modification ici pour inclure les bons attributs
+        console.log('Tentative d\'insertion:', {
+            categorie: selectedCategory,
+            nom_du_jeu: selectedGame,
+            contenu_du_jeu: postContent,
+            user_id: session.user.id,
+            nom_image: gameImage
+        });
+    
         const { error } = await supabaseClient
-            .from('posts') // Assurez-vous que 'posts' est le nom de votre table
-            .insert([
-                { 
-                    categorie: selectedCategory, // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
-                    nom_du_jeu: selectedGame,    // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
-                    contenu_du_jeu: postContent,  // Assurez-vous que le nom de l'attribut correspond à celui dans votre base de données
-                    email: userEmail, // Utilisez l'email stocké dans l'état
-                    nom_image: gameImage
-                }
-            ]);
+            .from('posts')
+            .insert([{
+                categorie: selectedCategory,
+                nom_du_jeu: selectedGame,
+                contenu_du_jeu: postContent,
+                nom_image: gameImage,
+                email:userEmail
+            }]);
     
         if (error) {
+            console.log('Erreur lors de l\'insertion:', error);
             setSubmitStatus({ success: false, error: true, message: 'Une erreur est survenue lors de la publication du post.' });
         } else {
+            console.log('Insertion réussie');
             setSubmitStatus({ success: true, error: false, message: 'Post publié avec succès!' });
             setPostContent('');
             setGameImage('');
         }
     };
+    
+    
     
     return (
         <div className="container mx-auto px-4">
