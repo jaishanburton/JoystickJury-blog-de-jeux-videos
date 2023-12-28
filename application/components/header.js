@@ -46,11 +46,15 @@ function Header() {
     <NavigationLink href="/modifier_profil" darkMode={darkMode}>Modifier profil</NavigationLink>
   </nav>
   <div className="flex items-center gap-4">
-  <Link href="/login">
-      <button className="text-white bg-blue-500 hover:bg-blue-700 font-medium py-2 px-4 rounded-full transition duration-300 ease-in-out shadow-lg cursor-pointer ml-2">
-        Connexion
-      </button>
-    </Link>
+  {user ? (
+      <LoggedIn darkMode={darkMode} />
+    ) : (
+      <Link href="/login">
+        <button className="text-white bg-blue-500 hover:bg-blue-700 font-medium py-2 px-4 rounded-full transition duration-300 ease-in-out shadow-lg cursor-pointer ml-2">
+          Connexion
+        </button>
+      </Link>
+    )}
 
     <button onClick={toggleDarkMode} className={`p-2 rounded-md ${darkMode ? 'bg-gray-300 text-gray-900' : 'bg-gray-600 text-white'}`}>
       {darkMode ? 'Light 🌞' : 'Dark 🌜'}
