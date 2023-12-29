@@ -27,19 +27,13 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 ### Comment utiliser le projet
 
-- **Installation**
+- **Installation et exécution**
   - Assurez-vous d'avoir Node.js et npm installés sur votre machine.
   - Clonez le dépôt ou téléchargez le code source.
-  - Dans le répertoire principal du projet, exécutez la commande suivante pour installer toutes les dépendances nécessaires.
-    ```
-    npm install
-    ```
-
-- **Exécution**
-
+  
     Pour lancer l'application Next.js :
     
-    - Ouvrez un terminal et naviguez jusqu'au dossier `app`.
+    - Ouvrez un terminal et naviguez jusqu'au dossier `client`.
     - Exécutez la commande suivante pour installer toutes les dépendances nécessaires, si ce n'est pas déjà fait.
     ```
     npm install
@@ -52,7 +46,7 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
  
 ## Liens vers notre Projet
 -  Lien Vercel : https://ece-webtech-501.vercel.app/
--  Lien projet Supabase : [Cliquer ici]()
+-  Lien projet Supabase : https://supabase.com/dashboard/project/kliieqiyiyicawnuqxnv/
 
 ## Auteurs
 - Jaishan BURTON ELMO, SI Gr 05
@@ -132,7 +126,7 @@ Ce projet regroupe les travaux réalisés pour le cours ece-webtech-501. Il a é
 
 - WYSIWYG integration
   - Note : 1
-  - Commentaire : Nous avions implémenté l'intégration WYSIWYG directement dans la page Post, mais nous l'avons retiré car l'importation de 'React-Quill' empêchait le déploiement sur Vercel (preuve dans nos derniers commits sur GitHub).
+  - Commentaire : Nous avions implémenté l'intégration WYSIWYG directement dans la page Post, mais nous l'avons retiré car l'importation de 'React-Quill' empêchait le déploiement sur Vercel (preuve dans nos derniers commits échoués sur GitHub).
 
 - Gravatar integration
   - Note : 2
