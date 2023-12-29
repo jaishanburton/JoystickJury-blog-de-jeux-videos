@@ -51,13 +51,11 @@ function LoggedIn() {
       
 
 
-    const logout = async () => {
-        const { error } = await supabaseClient.auth.signOut();
-        if (error) {
-            console.error('Erreur de déconnexion:', error);
-        }
-    };
-
+      const logout = async () => {
+        await supabase.auth.signOut();
+        router.push('/login');
+      };
+    
     return (
         <div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
