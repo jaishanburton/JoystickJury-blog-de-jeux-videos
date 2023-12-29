@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from '@supabase/auth-ui-react';
 import { createClient } from '@supabase/supabase-js';
-import { ThemeSupa } from '@supabase/auth-ui-shared'; 
+import { ThemeSupa } from '@supabase/auth-ui-shared';
+import Header from '../components/header'; 
 import Footer from '../components/footer';
 import '../app/globals.css';
 
