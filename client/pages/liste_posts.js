@@ -19,7 +19,9 @@ function PostsPage() {
   const fetchPosts = async () => {
     let { data: fetchedPosts, error } = await supabase
       .from('posts')
-      .select('*');
+      .select('*')
+      .order('id', { ascending: false });
+
     
     if (error) console.log('Error fetching posts', error);
     else setPosts(fetchedPosts);
@@ -32,7 +34,9 @@ function PostsPage() {
     async function fetchPosts() {
       let { data: fetchedPosts, error } = await supabase
         .from('posts')
-        .select('*');
+        .select('*')
+        .order('id', { ascending: false });
+
       
       if (error) console.log('Error fetching posts', error);
       else setPosts(fetchedPosts);
