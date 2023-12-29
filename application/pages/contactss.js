@@ -6,7 +6,6 @@ function App() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form method="POST" action="#">
-            {/* Username */}
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                 Username
@@ -16,7 +15,6 @@ function App() {
               </div>
             </div>
 
-            {/* Email Address */}
             <div className="mt-6">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
@@ -26,7 +24,6 @@ function App() {
               </div>
             </div>
 
-            {/* Confirm Email Address */}
             <div className="mt-6">
               <label htmlFor="confirm-email" className="block text-sm font-medium text-gray-700">
                 Confirm Email address
@@ -36,7 +33,6 @@ function App() {
               </div>
             </div>
 
-            {/* Password */}
             <div className="mt-6">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
@@ -46,7 +42,6 @@ function App() {
               </div>
             </div>
 
-            {/* Confirm Password */}
             <div className="mt-6">
               <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
                 Confirm Password
@@ -56,7 +51,6 @@ function App() {
               </div>
             </div>
 
-            {/* Date of Birth */}
             <div className="mt-6">
               <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
                 Date of Birth
@@ -66,7 +60,6 @@ function App() {
               </div>
             </div>
 
-            {/* Gender Selection */}
             <div className="flex items-center justify-center mt-6">
               <span className="mr-3 text-gray-700 font-medium">Gender:</span>
               <label className="inline-flex items-center">
@@ -79,7 +72,6 @@ function App() {
               </label>
             </div>
 
-            {/* Terms and Conditions */}
             <div className="mt-6 flex items-center justify-between">
               <div className="flex items-center">
                 <input id="terms-and-condition" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
@@ -89,7 +81,6 @@ function App() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="mt-6">
               <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Sign up

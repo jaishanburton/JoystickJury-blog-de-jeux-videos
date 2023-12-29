@@ -22,7 +22,6 @@ const EditPost = ({ post }) => {
     nom_du_jeu: '',
     contenu_du_jeu: '',
     email: '',
-    // Add other fields as necessary
   });
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -73,7 +72,6 @@ const EditPost = ({ post }) => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form onSubmit={handleSubmit}>
-            {/* Catégorie */}
             <div className="mt-6">
               <label htmlFor="categorie" className="block text-sm font-medium text-gray-700">
                 Catégorie
@@ -97,7 +95,6 @@ const EditPost = ({ post }) => {
               </div>
             </div>
   
-            {/* Nom du Jeu */}
             <div className="mt-6">
               <label htmlFor="nom_du_jeu" className="block text-sm font-medium text-gray-700">
                 Nom du jeu
@@ -121,7 +118,6 @@ const EditPost = ({ post }) => {
               </div>
             </div>
   
-            {/* Contenu du Jeu */}
             <div className="mt-6">
               <label htmlFor="contenu_du_jeu" className="block text-sm font-medium text-gray-700">
                 Contenu du jeu
@@ -139,7 +135,6 @@ const EditPost = ({ post }) => {
               </div>
             </div>
   
-            {/* Submit Button */}
             <div className="mt-6">
               <button
                 type="submit"

@@ -50,7 +50,7 @@ function PostsPage() {
     dots: true,
     infinite: filteredPosts.length > 3,
     speed: 500,
-    slidesToShow: Math.min(3, filteredPosts.length), // Affichez 3 ou moins selon le nombre de posts
+    slidesToShow: Math.min(3, filteredPosts.length), 
     slidesToScroll: Math.min(3, filteredPosts.length),
     autoplay: filteredPosts.length > 3,
     autoplaySpeed: 4000,
@@ -69,16 +69,15 @@ function PostsPage() {
   
     let newLikes;
     if (likedPosts[postId]) {
-      // Si le post a déjà été liké, décrémentez le nombre de likes
+      // Si le post a déjà été liké, décrémenter le nombre de likes
       newLikes = postToUpdate.likes > 0 ? postToUpdate.likes - 1 : 0;
       delete likedPosts[postId];
     } else {
-      // Sinon, incrémente le nombre de likes
+      // Sinon, incrémenter le nombre de likes
       newLikes = (postToUpdate.likes || 0) + 1;
       likedPosts[postId] = true;
     }
   
-    // Mettre à jour le post dans Supabase
     const { error } = await supabase
       .from('posts')
       .update({ likes: newLikes })
@@ -87,12 +86,9 @@ function PostsPage() {
     if (error) {
       console.error('Error updating likes', error);
     } else {
-      // Mettre à jour l'état local des posts sans faire appel à fetchPosts
       const newPosts = [...posts];
       newPosts[postIndex] = { ...postToUpdate, likes: newLikes };
       setPosts(newPosts);
-  
-      // Mettre à jour le localStorage
       localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
     }
   };
@@ -101,18 +97,15 @@ function PostsPage() {
   
 
 const renderPost = (post) => {
-  // Récupérer l'état des likes depuis le localStorage
   const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
-  // Vérifiez si l'utilisateur actuel a liké ce post spécifique
   const isLikedByCurrentUser = likedPosts[post.id];
 
   const handleLikeClick = (e, postId) => {
-    e.stopPropagation(); // Empêche l'événement de clic du post
-    handleLike(postId); // Appelle la fonction handleLike
+    e.stopPropagation();
+    handleLike(postId); 
   };
 
-  // Choisissez l'icône à afficher
-  const heartIcon = isLikedByCurrentUser ? '❤️' : '🤍'; // Cœur plein si liké, sinon cœur vide
+  const heartIcon = isLikedByCurrentUser ? '❤️' : '🤍'; 
 
   return (
     <div key={post.id} className="p-2 game-card" onClick={() => handlePostClick(post.id)}>

@@ -2,7 +2,6 @@ import { createClient } from '@supabase/supabase-js';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-// Assurez-vous de configurer correctement vos variables d'environnement pour Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);

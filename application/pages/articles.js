@@ -4,7 +4,6 @@ import Footer from '../components/footer';
 const dummyArticles = [
     { id: 1, title: "Mon premier article" },
     { id: 2, title: "Découverte de Next.js" },
-    // Ajouter d'autres articles factices si nécessaire
 ];
 
 function Articles({ articles }) {
@@ -12,11 +11,6 @@ function Articles({ articles }) {
         <><Header />
         
         <div className="container mx-auto px-4">
-            {/* En-tête */}
-            
-            
-
-            {/* Contenu principal */}
             <main className="mt-10">
                 <h2 className="text-2xl font-bold mb-4">Liste des articles</h2>
                 <ul>
@@ -28,7 +22,6 @@ function Articles({ articles }) {
                 </ul>
             </main>
 
-            {/* Pied de page */}
             <Footer />
         </div>
         </>

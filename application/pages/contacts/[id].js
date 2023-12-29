@@ -1,13 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 import React from 'react'
 
-// Assurez-vous que les informations de connexion à Supabase sont stockées de manière sécurisée
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY; // Utilisez une variable d'environnement pour la clé de service
+const supabaseServiceRoleKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY; 
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 const ContactDetails = ({ contact }) => {
-    // Gestion d'un contact inexistant ou d'une erreur de chargement
     if (!contact) {
         return <p>Contact non trouvé ou erreur de chargement.</p>;
     }

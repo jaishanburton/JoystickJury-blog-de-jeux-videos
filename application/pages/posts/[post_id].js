@@ -9,7 +9,6 @@ import CryptoJS from 'crypto-js';
 
 
 
-// Initialisez Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -36,8 +35,7 @@ const PostDetails = ({ post, initialComments }) => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        console.log('Fetching profile for user:', session.user.id); // Log pour déboguer
-          // Récupération des données de la table 'profiles'
+        console.log('Fetching profile for user:', session.user.id); 
           supabaseClient
               .from('profiles')
               .select('email')
@@ -61,15 +59,14 @@ const PostDetails = ({ post, initialComments }) => {
 const handleCommentSubmit = async (e) => {
     e.preventDefault();
     
-    // ... code pour obtenir la session et les détails de l'utilisateur
     
     const { data: newComment, error } = await supabase
         .from('comments')
         .insert([
         {
-            post_id: post_id, // Assurez-vous que post_id est l'ID correct du post
-            comment_text: commentText, // Texte du commentaire
-            email : userEmail // Email de l'utilisateur
+            post_id: post_id, 
+            comment_text: commentText, 
+            email : userEmail
         }
         ])
         .single();
@@ -80,14 +77,14 @@ const handleCommentSubmit = async (e) => {
     } else {
         console.log("Commentaire publié avec succès :", commentText);
         fetchComments();
-    setCommentText(''); // Réinitialiser le champ de texte après la soumission
+    setCommentText('');
   }
 };
 
 const fetchComments = async () => {
     const { data: comments, error } = await supabase
       .from('comments')
-      .select('id, comment_text, email, created_at') // Inclure la colonne email
+      .select('id, comment_text, email, created_at') 
       .eq('post_id', post_id)
       .order('created_at', { ascending: false });
   

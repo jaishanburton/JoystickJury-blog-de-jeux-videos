@@ -11,7 +11,6 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
-// Données pour les jeux
 const games = [
   { src: '/images/nba2k24-pc.jpg', title: 'NBA2K24', description: 'Le basketball à son apogée.' },
   { src: '/images/fc24-pc.jpg', title: 'FC24', description: 'Découvrez le frisson du football mondial.' },
@@ -27,7 +26,6 @@ const games = [
 
 
 
-// Paramètres pour le carrousel
 const settings = {
   dots: true,
   infinite: true,
@@ -50,7 +48,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Fonction pour récupérer les posts
     const fetchPosts = async () => {
       const { data, error } = await supabase
         .from('posts')
@@ -62,12 +59,10 @@ const Home = () => {
       }
     };
     
-    // Appel de la fonction au montage du composant
     fetchPosts();
-  }, []); // Le tableau vide signifie que cela ne se déclenchera qu'une fois, au montage du composant
+  }, []); 
   
 
- // Basculer le thème et le stocker dans localStorage
  const toggleDarkMode = () => {
   const newDarkMode = !darkMode;
   setDarkMode(newDarkMode);
@@ -77,14 +72,14 @@ const Home = () => {
 
   const handleGameClick = (game) => {
     const gamePosts = posts.filter(post => post.nom_du_jeu === game.title);
-    console.log(gamePosts); // Ajoutez ceci pour déboguer
+    console.log(gamePosts); 
     const lastPost = gamePosts[gamePosts.length - 1];
   
     if (lastPost) {
-      console.log('Redirection vers', `/posts/${lastPost.id}`); // Ajoutez ceci pour déboguer
+      console.log('Redirection vers', `/posts/${lastPost.id}`); 
       router.push(`/posts/${lastPost.id}`);
     } else {
-      console.log('Aucun post trouvé pour ce jeu'); // Ceci apparaîtra dans la console si aucun post n'est trouvé
+      console.log('Aucun post trouvé pour ce jeu'); 
     }
   };
   
@@ -92,13 +87,11 @@ const Home = () => {
     <>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <main className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-        {/* Hero Section */}
         <section className={`${darkMode ? 'bg-gray-800' : 'bg-gray-700'} text-center py-20 text-white`}>
           <h1 className="text-5xl font-bold mb-6">Bienvenue sur JoystickJury!</h1>
           <p className="text-xl">Votre source ultime pour les critiques et les nouvelles de jeux vidéo.</p>
         </section>
 
-        {/* Games Section */}
         <section className="container mx-auto py-20">
           <h2 className={`text-4xl text-center font-bold mb-12 ${darkMode ? 'text-white' : 'text-black'}`}>Les incontournables</h2>
           <Slider {...settings}>
@@ -119,7 +112,6 @@ const Home = () => {
           </Slider>
         </section>
 
-        {/* About Section */}
         <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} text-white dark:text-white py-20`}>
           <div className="container mx-auto text-center">
             <h2 className={`text-4xl ${darkMode ? 'text-white' : 'text-gray-900'} font-bold mb-6`}>À propos de JoystickJury</h2>

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Slider from 'react-slick'; // Assurez-vous d'importer Slider
+import Slider from 'react-slick'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Trailers = () => {
     const [videos, setVideos] = useState([]);
-    const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY; // Assurez-vous que votre clé API est nommée ainsi dans votre fichier .env.local
-
-    // Assurez-vous que les IDs de vidéos sont corrects
+    const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY; 
     const gameVideoIds = {
         'NBA2K24': 'OJS1BVniz5c',
         'FC24': 'XhP3Xh4LMA8',
@@ -45,7 +43,6 @@ const Trailers = () => {
                 if(data.items) {
                     setVideos(data.items);
                 } else {
-                    // Handle the case where items might not be present in the response
                     setVideos([]);
                 }
             } catch (error) {

@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { createClient } from '@supabase/supabase-js';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import md5 from 'md5'; // Assurez-vous d'avoir installé md5
-import CryptoJS from 'crypto-js'; // Assurez-vous d'avoir installé crypto-js
+import md5 from 'md5'; 
+import CryptoJS from 'crypto-js'; 
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -70,13 +70,13 @@ const ProfilePage = () => {
             id: session.user.id,
             username: username,
             language: language,
-            email: email  // Mise à jour de l'email dans votre table 'profiles'
+            email: email
           }, { returning: "minimal", onConflict: "id" });
   
         if (profileError) throw profileError;
   
         alert('Profil mis à jour avec succès.');
-        router.push('/'); // Rediriger l'utilisateur vers la page d'accueil
+        router.push('/'); 
       } catch (error) {
         console.error('Erreur lors de la mise à jour du profil:', error.message);
         setError(error.message);
@@ -135,9 +135,7 @@ const ProfilePage = () => {
               />
             </div>
           
-          {/* Formulaire de mise à jour */}
           <form onSubmit={updateProfile}>
-            {/* Nom d'utilisateur */}
             <div className="mt-4">
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                 Nom d'utilisateur
@@ -154,7 +152,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Langue avec drapeaux */}
             <div className="mt-4">
               <label htmlFor="language" className="block text-sm font-medium text-gray-700">
                 Langue
@@ -172,7 +169,6 @@ const ProfilePage = () => {
               </select>
             </div>
 
-            {/* Boutons */}
             <div className="flex justify-between items-center mt-6">
               <button
                 type="submit"

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'; // Ajout de useEffect ici
+import React, { useState, useEffect } from 'react'; 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Image from 'next/image'; // Importation du composant Image de Next.js pour une meilleure optimisation
+import Image from 'next/image'; 
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/router';
 
@@ -45,8 +45,6 @@ function Post() {
         'Jeux de manga': ['Naruto Shippuden: Ultimate Ninja Storm 4', 'Dragon Ball FighterZ', 'One Piece: Pirate Warriors 4', 'Attack on Titan 2', 'My Hero One’s Justice']
     };
 
-    // Un objet contenant les chemins des images pour chaque jeu.
-    // Assurez-vous que les chemins correspondent aux noms de fichier des images que vous avez.
     const gameImages = {
         'FC24': '/images/fc24-pc.jpg',
         'NBA2K24': '/images/nba2k24-pc.jpg',
@@ -83,7 +81,6 @@ function Post() {
     const handleGameChange = (e) => {
         const game = e.target.value;
         setSelectedGame(game);
-        // Utilisez le nom du jeu pour obtenir l'image correspondante.
         const image = gameImages[game] || '/images/default-pc.jpg';
         setGameImage(image);
     };
@@ -172,7 +169,7 @@ function Post() {
                         </div>
                     )}
                     {selectedGame && gameImage && (
-                        <div className="flex justify-center mb-4"> {/* Centre l'image horizontalement */}
+                        <div className="flex justify-center mb-4"> 
                             <Image src={gameImage} alt={`Couverture du jeu ${selectedGame}`} width={300} height={450} layout="intrinsic" />
                         </div>
                     )}

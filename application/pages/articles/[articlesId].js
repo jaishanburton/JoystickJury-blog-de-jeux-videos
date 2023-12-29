@@ -20,12 +20,11 @@ export async function getStaticPaths() {
     const paths = [
         { params: { articlesId: '1' } },
         { params: { articlesId: '2' } },
-        // ... autres IDs d'articles
     ];
 
     return {
         paths,
-        fallback: 'blocking' // Si un nouvel ID est demandé qui n'est pas dans la liste, Next.js le générera à la demande avec le mode 'blocking'.
+        fallback: 'blocking' 
     };
 }
 

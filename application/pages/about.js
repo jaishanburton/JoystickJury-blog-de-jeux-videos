@@ -16,7 +16,6 @@ function About() {
                         à partager des critiques profondes, des tutoriels de gameplay et des conseils
                         pour améliorer votre expérience de jeu.
                     </p>
-                    {/* Conteneur pour l'image avec une qualité et un recadrage optimisés */}
                     <div className="my-8 mx-auto max-w-4xl">
                         <Image 
                             src="/images/gaming.png" 
@@ -25,7 +24,7 @@ function About() {
                             height={1080} 
                             layout="responsive" 
                             objectFit="cover" 
-                            quality={100} // Mettez la qualité à 100 pour une image de haute qualité
+                            quality={100} 
                         />
                     </div>
                     <p className="text-xl">

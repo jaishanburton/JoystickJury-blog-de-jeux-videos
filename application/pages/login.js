@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from '@supabase/auth-ui-react';
 import { createClient } from '@supabase/supabase-js';
-import { ThemeSupa } from '@supabase/auth-ui-shared'; // Assurez-vous que ce module est disponible
-import Header from '../components/header';
+import { ThemeSupa } from '@supabase/auth-ui-shared'; 
 import Footer from '../components/footer';
 import '../app/globals.css';
 
-// Assurez-vous de configurer correctement vos variables d'environnement pour Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -22,7 +20,6 @@ const LoginPage = () => {
       }
     });
 
-    // S'assurer de se désabonner correctement lors du nettoyage
     return () => {
       if (authListener && typeof authListener.unsubscribe === 'function') {
         authListener.unsubscribe();
@@ -36,7 +33,7 @@ const LoginPage = () => {
       <div className="container mx-auto px-4">
         <Auth
           supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }} // Appliquez le thème ThemeSupa ici
+          appearance={{ theme: ThemeSupa }} 
           providers={['github']}
         />
       </div>

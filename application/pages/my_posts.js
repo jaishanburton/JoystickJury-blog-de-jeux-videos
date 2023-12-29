@@ -10,7 +10,6 @@ import { TrashIcon } from '@heroicons/react/outline';
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
-// Initialisez le client Supabase ici, en dehors du composant
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -30,11 +29,11 @@ const MyPosts = () => {
 // Paramètres pour le carrousel
 const settings = {
     dots: true,
-    infinite: myPosts.length > 3, // Infinite seulement si plus de 3 posts
+    infinite: myPosts.length > 3, 
     speed: 500,
-    slidesToShow: Math.min(3, myPosts.length), // Ne montrez pas plus de diapositives qu'il n'y a de posts
+    slidesToShow: Math.min(3, myPosts.length), 
     slidesToScroll: 2,
-    autoplay: myPosts.length > 3, // Autoplay seulement si plus de 3 posts
+    autoplay: myPosts.length > 3,
     autoplaySpeed: 4000,
 };
   useEffect(() => {
@@ -55,7 +54,7 @@ const settings = {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session) {
-        console.log('Fetching posts for email:', session.user.email); // Log pour déboguer
+        console.log('Fetching posts for email:', session.user.email); 
         let { data: fetchedPosts, error } = await supabase
           .from('posts')
           .select('*')
@@ -74,20 +73,17 @@ const settings = {
 
 
   const handleEdit = (postId) => {
-    // Rediriger l'utilisateur vers la page de modification du post
     router.push(`/edit-post/${postId}`);
 };
 
 
 
-  // Gérer le clic sur le post pour naviguer vers la page de détail
   const handlePostClick = (post) => {
     router.push({
       pathname: `/posts/${post.id}`,
     });
   };
 
- // Gérer la suppression du post
  const handleDelete = async (postId) => {
     if (!userEmail) {
       alert('Vous devez être connecté pour supprimer des posts.');
@@ -96,7 +92,6 @@ const settings = {
   
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ce post ?')) {
       try {
-        // Démarrez une transaction pour supprimer les commentaires puis le post
         await supabaseClient
           .from('comments')
           .delete()
@@ -111,7 +106,6 @@ const settings = {
           throw error;
         }
   
-        // Mettre à jour l'état local après la suppression réussie
         setMyPosts(currentPosts => currentPosts.filter((post) => post.id !== postId));
         alert('Post et commentaires associés supprimés avec succès.');
   
@@ -127,7 +121,6 @@ const settings = {
     <>
       <Header />
       <main className="min-h-screen bg-gray-100">
-        {/* Section des posts */}
         <section className="container mx-auto py-20">
           <h2 className="text-4xl text-center font-bold mb-12">Mes Posts</h2>
           <Slider {...settings}>
@@ -147,7 +140,7 @@ const settings = {
                     handleEdit(post.id);
                   }} />
                   <TrashIcon className="h-6 w-6 absolute top-2 right-2 text-red-600 cursor-pointer" onClick={(e) => {
-                    e.stopPropagation(); // Empêcher l'événement de clic de la carte
+                    e.stopPropagation();
                     handleDelete(post.id);
                   }} />
                 </div>
