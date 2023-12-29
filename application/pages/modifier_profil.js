@@ -111,7 +111,7 @@ const ProfilePage = () => {
               href="https://gravatar.com/profile/avatar/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-indigo-600 hover:text-indigo-800"
+              className="text-indigo-600 hover:text-indigo-800 mt-4 block text-center"
             >
               Modifier la photo de profil sur Gravatar
             </a>
