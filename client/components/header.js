@@ -35,6 +35,8 @@ function Header() {
   return (
 <header className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} p-4 flex justify-between items-center w-full`}>
   <span className="text-4xl font-bold">JoystickJury</span>
+  {/* rajouter les crédits dans l'en-tête */}
+  <span className="text-1xl font-bold">fait par Mathys BAGNAH & Jaishan BURTON ELMO</span>
   <nav className="flex gap-4 items-center">
     <NavigationLink href="/" darkMode={darkMode}>Accueil</NavigationLink>
     <NavigationLink href="/about" darkMode={darkMode}>À propos</NavigationLink>
